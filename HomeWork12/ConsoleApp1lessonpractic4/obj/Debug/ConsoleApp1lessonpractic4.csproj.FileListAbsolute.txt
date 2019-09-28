@@ -1,0 +1,7 @@
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\bin\Debug\ConsoleApp1lessonpractic4.exe.config
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\bin\Debug\ConsoleApp1lessonpractic4.exe
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\bin\Debug\ConsoleApp1lessonpractic4.pdb
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\obj\Debug\ConsoleApp1lessonpractic4.csprojAssemblyReference.cache
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\obj\Debug\ConsoleApp1lessonpractic4.csproj.CoreCompileInputs.cache
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\obj\Debug\ConsoleApp1lessonpractic4.exe
+C:\Users\Julia\source\repos\ConsoleApp12lessonpracctic1\ConsoleApp1lessonpractic4\obj\Debug\ConsoleApp1lessonpractic4.pdb
