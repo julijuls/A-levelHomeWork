@@ -1,0 +1,7 @@
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\obj\Debug\ConsoleApp3FizzBazz.csprojAssemblyReference.cache
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\obj\Debug\ConsoleApp3FizzBazz.csproj.CoreCompileInputs.cache
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\bin\Debug\ConsoleApp3FizzBazz.exe.config
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\bin\Debug\ConsoleApp3FizzBazz.exe
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\bin\Debug\ConsoleApp3FizzBazz.pdb
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\obj\Debug\ConsoleApp3FizzBazz.exe
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\ConsoleApp3FizzBazz\obj\Debug\ConsoleApp3FizzBazz.pdb

@@ -1,0 +1,7 @@
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\bin\Debug\Fibonachi.exe.config
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\bin\Debug\Fibonachi.exe
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\bin\Debug\Fibonachi.pdb
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\obj\Debug\Fibonachi.csprojAssemblyReference.cache
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\obj\Debug\Fibonachi.csproj.CoreCompileInputs.cache
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\obj\Debug\Fibonachi.exe
+C:\Users\Julia\source\repos\ConsoleApp3FizzBazz\Fibonachi\obj\Debug\Fibonachi.pdb
