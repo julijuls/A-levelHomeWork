@@ -1,0 +1,7 @@
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\bin\Debug\HomeWork16Collections.exe.config
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\bin\Debug\HomeWork16Collections.exe
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\bin\Debug\HomeWork16Collections.pdb
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\obj\Debug\HomeWork16Collections.csprojAssemblyReference.cache
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\obj\Debug\HomeWork16Collections.csproj.CoreCompileInputs.cache
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\obj\Debug\HomeWork16Collections.exe
+C:\Users\Julia\source\repos\HomeWork16Collections\HomeWork16Collections\obj\Debug\HomeWork16Collections.pdb
