@@ -1,0 +1,7 @@
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\bin\Debug\HomeWork17BankingAccount.exe.config
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\bin\Debug\HomeWork17BankingAccount.exe
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\bin\Debug\HomeWork17BankingAccount.pdb
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\obj\Debug\HomeWork17BankingAccount.csprojAssemblyReference.cache
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\obj\Debug\HomeWork17BankingAccount.csproj.CoreCompileInputs.cache
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\obj\Debug\HomeWork17BankingAccount.exe
+C:\Users\Julia\source\repos\HomeWork17BankingAccount\HomeWork17BankingAccount\obj\Debug\HomeWork17BankingAccount.pdb
