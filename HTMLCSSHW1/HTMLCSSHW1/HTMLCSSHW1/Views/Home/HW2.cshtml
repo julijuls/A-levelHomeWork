@@ -2,16 +2,13 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
     ViewBag.Title = "HW2";
 }
-<div class="header_div">
-    <img src="https://picsum.photos/3000/400" class="img-fluid" style="max-width:100%; height:auto;" alt="">
-</div>
+
+
+
+<h1 class="text-center">About us</h1>
 <div id="about_us" class="container">
-
-    <h1 class="text-center">About us</h1>
-
-
     <div class="col-sm-6">
-        <img src="https://picsum.photos/220/180" class="about_us_img">
+        <img src="~/Content/img/images_red_forest.jpg" class="about_us_img">
     </div>
     <div class="col-md-6 text_with_picture_about_us">
         <ul>
@@ -24,54 +21,52 @@
     </div>
 </div>
 
-<br>
-
 <hr>
-<div id="our_team" class="center-block ">
-    <h1 class="text-center">Our team</h1>
+<h1 class="text-center">Our team</h1>
+<div id="our_team" class="container">
+
     <div class="picture_with_text">
-        <img src="https://picsum.photos/220/180">
+        <img src="/Content/img/images_red_forest.jpg">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </div>
     <div class="picture_with_text">
-        <img src="https://picsum.photos/220/180">
+        <img src="~/Content/img/images_red_forest.jpg">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </div>
     <div class="picture_with_text">
-        <img src="https://picsum.photos/220/180">
+        <img src="~/Content/img/images_red_forest.jpg">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </div>
     <div class="picture_with_text">
-        <img src="https://picsum.photos/220/180">
+        <img src="~/Content/img/images_red_forest.jpg">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     </div>
 </div>
 <hr>
+<h1 class="text-center">Photos</h1>
 <div id="fotos" class="container">
-    <br>
-    <h1 class="text-center">Photos</h1>
-    <br>
     <div>
         <div class="row">
-            <img src="https://picsum.photos/220/180" alt="">
-            <img src="https://picsum.photos/id/1004/220/180" alt="">
-            <img src="https://picsum.photos/220/180" alt="">
-            <img src="https://picsum.photos/id/1004/220/180" alt="">
-            <img src="https://picsum.photos/220/180" alt="">
+            <img src="/Content/img/images_red_forest.jpg" alt="">
+            <img src="https://picsum.photos/id/1004/205/180" alt="">
+            <img src="/Content/img/images_red_forest.jpg" alt="">
+            <img src="https://picsum.photos/id/1004/205/180" alt="">
+            <img src="/Content/img/images_red_forest.jpg" alt="">
         </div>
         <div class="row">
-            <img src="https://picsum.photos/id/1004/220/180" alt="">
-            <img src="https://picsum.photos/220/180" alt="">
-            <img src="https://picsum.photos/id/1004/220/180" alt="">
-            <img src="https://picsum.photos/220/180" alt="">
-            <img src="https://picsum.photos/id/1004/220/180" alt="">
+            <img src="https://picsum.photos/id/1004/205/180" alt="">
+            <img src="/Content/img/images_red_forest.jpg" alt="">
+            <img src="https://picsum.photos/id/1004/205/180" alt="">
+            <img src="/Content/img/images_red_forest.jpg" alt="">
+            <img src="https://picsum.photos/id/1004/205/180" alt="">
         </div>
     </div>
 </div>
 
 <hr>
+<h1 class="text-center">Contact us</h1>
 <div id="contact_us" class="container">
-    <h1 class="text-center">Contact us</h1>
+
     <div id="form_div" class="col-sm-6">
         @using (Html.BeginForm("HW2", "Home", FormMethod.Post))
         {
@@ -101,6 +96,7 @@
         }
     </div>
     <div class="col-sm-6">
-        <img src="https://picsum.photos/220/180" class="contact_us_img">
+        <img src="/Content/img/images_red_forest.jpg" class="contact_us_img">
     </div>
 </div>
+

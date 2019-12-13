@@ -1,53 +1,81 @@
 ﻿body {
-    margin: 122px;
-    align-content:center;
+    margin-top: 100px;
+    align-content: center;
+}
+
+
+.searchButton {
+    background: #538AC5;
+    border: 0;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0;
+}
+.navbar {
+    width: 100%;
+    margin-bottom: 0px;
 }
 
 .my-nav {
-    background-color: #2ecc71;
-    border-color: #27ae60;
- 
-    color: black;
-    margin-bottom: 0;
+    background-color: grey;
+    border-color: black;
+    margin-bottom: 0px;
 }
+
 .navbar-inverse .navbar-nav > li > a {
-    color: white;
+    color: darkred;
 }
+
 .search_nav {
     float: right;
 }
-.header_div {
-    padding-right: 0px;
-    padding-left: 0px;
-    margin-right: 0;
-    margin-left: 0;
-    width: 2500px;
+
+#image-container {
+    width: 100%;
+    height: 210px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+div #our_team.container,
+    #contact_us.container,
+    #fotos.container, 
+    #about_us.container {
+    align-content: center;
+    margin: 10%;
 }
 .submit_btn {
     display: block;
     position: relative;
     margin: 0 auto;
 }
+.picture_with_text {
+    display: flex;
+    max-width: 230px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid grey;
+    border-radius: 16px;
 
+    display: inline-block;
+}
+    .picture_with_text img {
+        margin: 10px;
+    }
 .picture_with_text p {
     text-align: center;
+    margin: 5px;
 }
 
-.picture_with_text {
-    max-width: 220px;
-    border: 1px solid black;
-    border-radius: 16px;
-    display:inline-block;
-   
+
+.contact_us_img {
+    float: left;
 }
-.contact_us_img{
-    float:left;
-}
+
 .about_us_img {
     float: right;
 }
+
 .radio-btn-class {
     text-align: left;
 }
-
-

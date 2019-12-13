@@ -24,15 +24,27 @@
                 <ul class="nav navbar-nav navbar-right nav-tabs">
 
                     <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About us", "#", new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Our team", "#", "Home", new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Fotos", "#", "Home", new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact us", "#", "Home", new { @class = "nav-link" })</li>
-
+                    <li class="nav-item">
+                        <a class="nav-link " href="#about_us">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#our_team">Our team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#fotos">Fotos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#contact_us">Contact us</a>
+                    </li>
                 </ul>
             </div>
         </nav>
-
+   
+    </div>
+    <div class="navbar">
+        <p>
+            <img src="/Content/img/dark_forest.jpg" id="image-container" alt="Иллюстрация">
+        </p>
     </div>
     
     <div class="container body-content">

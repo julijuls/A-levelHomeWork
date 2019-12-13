@@ -1,0 +1,58 @@
+﻿body {
+    margin: 0;
+}
+
+.flex-container {
+    margin: calc(30% - 300px) auto;
+    display: flex;
+    width: 300px;
+    flex-flow: row wrap;
+}
+
+.flex-element {
+    margin: 5px 5px;
+}
+
+.first-block {
+    background-color: rgb(46, 204, 113);
+    height: 160px;
+    width: 75px;
+}
+
+.second-block {
+    background-color: rgb(231, 76, 60);
+    height: 75px;
+    width: 75px;
+}
+
+.third-block {
+    background-color: rgb(155, 89, 182);
+    height: 75px;
+    width: 75px;
+}
+
+.fourth-block {
+    background-color: rgb(52, 152, 219);
+    height: 75px;
+    width: 75px;
+    margin: 10px 0 0 5px;
+}
+
+.sixth-block {
+    background-color: rgb(243, 156, 18);
+    height: 120px;
+    width: 75px;
+}
+
+.seventh-block {
+    background-color: rgb(26, 188, 156);
+    height: 30px;
+    width: 75px;
+    margin: 10px 0 0 5px;
+}
+
+.fifth-block {
+    background-color: rgb(52, 73, 94);
+    height: 75px;
+    width: 160px;
+}

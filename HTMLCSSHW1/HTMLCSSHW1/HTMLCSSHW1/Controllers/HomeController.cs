@@ -37,6 +37,10 @@ namespace HTMLCSSHW1.Controllers
 
             return View();
         }
+        public ActionResult Flex()
+        {
+            return View();
+        }
         public ActionResult HW2()
         {
             return View();
