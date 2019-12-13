@@ -1,0 +1,53 @@
+﻿body {
+    margin: 122px;
+    align-content:center;
+}
+
+.my-nav {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+ 
+    color: black;
+    margin-bottom: 0;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.search_nav {
+    float: right;
+}
+.header_div {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 0;
+    margin-left: 0;
+    width: 2500px;
+}
+.submit_btn {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+}
+
+.picture_with_text p {
+    text-align: center;
+}
+
+.picture_with_text {
+    max-width: 220px;
+    border: 1px solid black;
+    border-radius: 16px;
+    display:inline-block;
+   
+}
+.contact_us_img{
+    float:left;
+}
+.about_us_img {
+    float: right;
+}
+.radio-btn-class {
+    text-align: left;
+}
+
+

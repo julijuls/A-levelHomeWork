@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="/Content/Site2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-light bg-dark justify-content-between">
+            <a class="navbar-brand"><i class="glyphicon glyphicon-earphone" aria-hidden="true" style="color: green;"></i>9379992</a>
+            <form class="form-inline search_nav">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
+        <nav class="navbar my-nav  mb-0">
+            <div class="">
+                <ul class="nav navbar-nav navbar-right nav-tabs">
+
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About us", "#", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Our team", "#", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Fotos", "#", "Home", new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact us", "#", "Home", new { @class = "nav-link" })</li>
+
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

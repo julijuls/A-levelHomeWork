@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Music";
+}
+
+<h2>Music</h2>
+<head>
+    <script data-require="jquery" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <link data-require="bootstrap-glyphicons" data-semver="3.2.1" rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/img/glyphicons-halflings.png" />
+    <link data-require="bootstrap" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <script data-require="bootstrap" data-semver="3.3.1" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <h1 class="text-center">Bootstrap HTML5 Music Player</h1>
+    <audio id="rock" src="http://whiteoakstables.net/chat/audio/rock.wav" preload="auto"></audio>
+    <audio id="blues" src="http://whiteoakstables.net/chat/audio/blues.wav" preload="auto"></audio>
+    <audio id="electronica" src="http://whiteoakstables.net/chat/audio/electronica.wav" preload="auto"></audio>
+    <audio id="classical" src="http://whiteoakstables.net/chat/audio/classical.wav" preload="auto"></audio>
+    <audio id="latin" src="http://whiteoakstables.net/chat/audio/latin.wav" preload="auto"></audio>
+    <audio id="indie" src="http://whiteoakstables.net/chat/audio/indie.wav" preload="auto"></audio>
+    <div class="audiocontroller">
+        <i class="audio-logo glyphicon glyphicon-headphones"></i>
+        <i class="dynamiclink glyphicon glyphicon-play" id="play"></i></a>
+        <i class="dynamiclink glyphicon glyphicon-pause" id="pause"></i>
+        <select id="currentTrack">
+            <option value="rock">Rock</option>
+            <option value="blues">Blues</option>
+            <option value="electronica">Electronica</option>
+            <option value="classical">Classical</option>
+            <option value="latin">Latin</option>
+            <option value="indie">Indie</option>
+        </select>
+        <i class="dynamiclink glyphicon glyphicon-stop" id="stop"></i>
+    </div>
+    <p class="text-center">
+        <a id="author" href="http://design1online.com" target="_blank">by Design1online.com, LLC</a>
+    </p>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/nCp4HK3FZDg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</body>
+<script>
+    //Simple HTML5 Music Player by design1online.com, LLC
+
+var currentTrack = null;
+var paused = false;
+
+$(document).ready(function() {
+  currentTrack = $('#currentTrack').val();
+
+  $("#play").click(function() { play(); });
+  $("#stop").click(function() { stop(); });
+  $("#pause").click(function() { pause(); });
+});
+
+function play() {
+
+  //set the track back to the beginning
+  if (!paused) {
+    stop();
+    currentTrack = $('#currentTrack').val();
+
+    //make sure track starts from the begining each time
+    document.getElementById(currentTrack).load();
+  }
+
+  //play the track
+	document.getElementById(currentTrack).play();
+}
+
+//stop playing the current track
+function stop() {
+  if (currentTrack) {
+    document.getElementById(currentTrack).pause();
+    paused = false;
+  }
+}
+
+//stop the track but don't go back to the beginning
+function pause() {
+  paused = true;
+  document.getElementById(currentTrack).pause();
+}
+</script>

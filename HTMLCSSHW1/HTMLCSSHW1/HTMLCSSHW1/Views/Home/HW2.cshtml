@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "HW2";
+}
+<div class="header_div">
+    <img src="https://picsum.photos/3000/400" class="img-fluid" style="max-width:100%; height:auto;" alt="">
+</div>
+<div id="about_us" class="container">
+
+    <h1 class="text-center">About us</h1>
+
+
+    <div class="col-sm-6">
+        <img src="https://picsum.photos/220/180" class="about_us_img">
+    </div>
+    <div class="col-md-6 text_with_picture_about_us">
+        <ul>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
+        </ul>
+
+    </div>
+</div>
+
+<br>
+
+<hr>
+<div id="our_team" class="center-block ">
+    <h1 class="text-center">Our team</h1>
+    <div class="picture_with_text">
+        <img src="https://picsum.photos/220/180">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+    <div class="picture_with_text">
+        <img src="https://picsum.photos/220/180">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+    <div class="picture_with_text">
+        <img src="https://picsum.photos/220/180">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+    <div class="picture_with_text">
+        <img src="https://picsum.photos/220/180">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+</div>
+<hr>
+<div id="fotos" class="container">
+    <br>
+    <h1 class="text-center">Photos</h1>
+    <br>
+    <div>
+        <div class="row">
+            <img src="https://picsum.photos/220/180" alt="">
+            <img src="https://picsum.photos/id/1004/220/180" alt="">
+            <img src="https://picsum.photos/220/180" alt="">
+            <img src="https://picsum.photos/id/1004/220/180" alt="">
+            <img src="https://picsum.photos/220/180" alt="">
+        </div>
+        <div class="row">
+            <img src="https://picsum.photos/id/1004/220/180" alt="">
+            <img src="https://picsum.photos/220/180" alt="">
+            <img src="https://picsum.photos/id/1004/220/180" alt="">
+            <img src="https://picsum.photos/220/180" alt="">
+            <img src="https://picsum.photos/id/1004/220/180" alt="">
+        </div>
+    </div>
+</div>
+
+<hr>
+<div id="contact_us" class="container">
+    <h1 class="text-center">Contact us</h1>
+    <div id="form_div" class="col-sm-6">
+        @using (Html.BeginForm("HW2", "Home", FormMethod.Post))
+        {
+
+            <div class="form-group">
+                <p><b>Use form:</b></p>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Surname"><br>
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Name"><br>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <input type="text" class="form-control" id="phone" name="first_name" placeholder="phone"><br>
+                    <input type="text" class="form-control" id="Age" name="last_name" placeholder="Age"><br>
+                </div>
+                <div class="col-md-12 radio-btn-class">
+                    <label> <input type="radio" /><b>Lorem ipsum lorem ipsum</b></label><br>
+                </div>
+                <div class="col-md-12"><button type="submit" class="btn btn-success submit_btn">Press</button></div>
+
+            </div>
+
+
+
+        }
+    </div>
+    <div class="col-sm-6">
+        <img src="https://picsum.photos/220/180" class="contact_us_img">
+    </div>
+</div>
