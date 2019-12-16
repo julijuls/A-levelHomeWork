@@ -37,11 +37,11 @@ namespace HTMLCSSHW1.Controllers
 
             return View();
         }
-        public ActionResult Flex()
+        public ActionResult HW2()
         {
             return View();
         }
-        public ActionResult HW2()
+        public ActionResult JSTaskList()
         {
             return View();
         }
