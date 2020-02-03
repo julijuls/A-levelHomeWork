@@ -1,0 +1,71 @@
+﻿@model PlatDiplom.Models.PlatModel.PlatForDNView
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true"> X </button>
+
+        <h4>Create registry </h4>
+
+    </div>
+    <div class="modal-body">
+
+        @if (Model.Payments.Count() != 0)
+        {
+            <table class="table table-bordered" id="InventionTable">
+                <thead>
+                    <tr style="position:sticky; top:80px;">
+
+                        <th>Payment</th>
+                        <th>sum</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{foreach (var item in Model.Payments)
+                        {
+                            <tr>
+                                <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
+                                <td>	@Html.DisplayFor(model => item.sum)</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Сумма счета</td>
+                        <td class="PlatSum"><b>@Html.DisplayFor(model => model.SelectedSum)</b></td>
+                    </tr>
+
+                </tfoot>
+            </table>
+            <input type="button" class="btn btn-success" value="GenDN" id="GenDN">
+
+            @Html.ActionLink("GenDN", "genDn", "GenDocument", null, new { platList = Model.Payments })
+        }
+
+
+    </div>
+</div>
+
+<script>
+     $(`#GenDN`).click(function () {
+
+     //   console.log(resList);
+     //   alert(resList);
+
+        $.ajax({
+            type: `POST`,
+            url: `/GenDocument/GenDN`,
+            data: {
+                platList: JsonConvert.SerializeObject(@Model) 
+            },
+            success: function (data) {
+              
+                alert("Сделаль!");
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+</script>

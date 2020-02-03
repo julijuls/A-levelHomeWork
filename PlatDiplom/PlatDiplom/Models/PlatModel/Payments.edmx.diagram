@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40ba4f97ea4b4da0aedbb21fea425fad" Name="Diagram1">
+        <EntityTypeShape EntityType="nemo_freshModel.About_banks" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.AccessLogWeb" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.AccessLogWebIpAddress" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.Countries" Width="1.5" PointX="6" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.Currencies" Width="1.5" PointX="6" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.DebitNotes" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.PaymentsRU" Width="1.5" PointX="8.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.PTariffsUA" Width="1.5" PointX="8.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.PurofPayment" Width="1.5" PointX="2.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.UserGroups" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.Users" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nemo_freshModel.PrePayment" Width="1.5" PointX="10.75" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="nemo_freshModel.FK_PaymentsRU_About_banks" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_AccessLogWeb_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_Countries_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_PaymentsRU_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_PaymentsRU_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_DebitNotes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_PaymentsRU_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_PTariffsUA_PTariffsUA" ManuallyRouted="false" />
+        <AssociationConnector Association="nemo_freshModel.FK_Users_UserGroups" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

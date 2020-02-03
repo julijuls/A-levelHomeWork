@@ -1,0 +1,1454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nemo_freshModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="About banks">
+          <Key>
+            <PropertyRef Name="Bank ID" />
+          </Key>
+          <Property Name="Bank ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="255" />
+          <Property Name="Account" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ref" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="AccountN" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameUkr" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameEngRus" Type="nvarchar" MaxLength="255" />
+          <Property Name="BankCorrespondent" Type="nvarchar" MaxLength="255" />
+          <Property Name="CorrespondentField" Type="nvarchar" MaxLength="255" />
+          <Property Name="BankIndex" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankLevel" Type="int" />
+          <Property Name="Index_IN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Index_OUT" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpecialCodeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SpecialCodes" Type="nvarchar" MaxLength="50" />
+          <Property Name="DetailsOfPayment" Type="nvarchar" MaxLength="255" />
+          <Property Name="BeneficiaryAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Registration" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameFirmOtherLang" Type="nvarchar" MaxLength="250" />
+          <Property Name="AddressFirmOtherLang" Type="nvarchar" MaxLength="250" />
+          <Property Name="NameFirmEng" Type="nvarchar" MaxLength="250" />
+          <Property Name="AddressFirmEng" Type="nvarchar" MaxLength="250" />
+          <Property Name="DirectorOtherLang" Type="nvarchar" MaxLength="50" />
+          <Property Name="DirectorEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patentname" Type="nvarchar" MaxLength="50" />
+          <Property Name="PatentNameEng" Type="nvarchar" MaxLength="50" />
+          <Property Name="Beneficiary bank" Type="nvarchar" MaxLength="250" />
+          <Property Name="Intermediary_bank" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="AccessLogWeb">
+          <Key>
+            <PropertyRef Name="id_inout" />
+          </Key>
+          <Property Name="id_inout" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time_checkin" Type="datetime" />
+          <Property Name="time_checkout" Type="smalldatetime" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" />
+          <Property Name="pageurl" Type="nvarchar" MaxLength="255" />
+          <Property Name="ip_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="comp_user" Type="nvarchar" MaxLength="50" />
+          <Property Name="comments" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="AccessLogWebIpAddress">
+          <Key>
+            <PropertyRef Name="AccessLogWebIpAddressID" />
+          </Key>
+          <Property Name="AccessLogWebIpAddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IpAddress" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="IsAllowed" Type="bit" Nullable="false" />
+          <Property Name="IpAddressDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="id_country" />
+          </Key>
+          <Property Name="id_country" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Eng" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country_Rus" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country_Ukr" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Favourite" Type="bit" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Country_CN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country_BE" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_ES" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_PT" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_DE" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_FR" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_IT" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_PL" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_JA" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_LT" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_LV" Type="nvarchar" MaxLength="60" />
+          <Property Name="Country_CZ" Type="nvarchar" MaxLength="60" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="id_currency" />
+          </Key>
+          <Property Name="id_currency" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="currencycode" Type="nvarchar" MaxLength="255" />
+          <Property Name="currencyname" Type="nvarchar" MaxLength="255" />
+          <Property Name="sortorder" Type="int" />
+        </EntityType>
+        <EntityType Name="DebitNotes">
+          <Key>
+            <PropertyRef Name="ID_DN" />
+          </Key>
+          <Property Name="ID_DN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="smalldatetime" />
+          <Property Name="Case" Type="nvarchar" MaxLength="255" />
+          <Property Name="To" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sum" Type="money" />
+          <Property Name="Date1" Type="smalldatetime" />
+          <Property Name="Sum1" Type="money" />
+          <Property Name="Sumплатить" Type="money" />
+          <Property Name="Official" Type="money" />
+          <Property Name="Appl_ID" Type="nvarchar" MaxLength="15" />
+          <Property Name="F_ID" Type="nvarchar" MaxLength="25" />
+          <Property Name="Access_level" Type="bit" />
+          <Property Name="File" Type="nvarchar(max)" />
+          <Property Name="TempDoc" Type="nvarchar(max)" />
+          <Property Name="FinalPDF" Type="nvarchar(max)" />
+          <Property Name="PDFValidTill" Type="smalldatetime" />
+          <Property Name="Ref" Type="nvarchar(max)" />
+          <Property Name="Sum$" Type="money" />
+          <Property Name="SumEURO" Type="money" />
+          <Property Name="SumUA" Type="money" />
+          <Property Name="SumRU" Type="money" />
+          <Property Name="Akt" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="25" />
+          <Property Name="Result" Type="money" />
+          <Property Name="Sum1_EURO_inf" Type="money" />
+          <Property Name="Credit note" Type="money" />
+          <Property Name="Official_EURO" Type="money" />
+          <Property Name="x" Type="int" />
+          <Property Name="Action" Type="nvarchar(max)" />
+          <Property Name="FilePaid" Type="nvarchar(max)" />
+          <Property Name="Index" Type="nvarchar" MaxLength="50" />
+          <Property Name="Changes" Type="nvarchar(max)" />
+          <Property Name="BankIndex" Type="int" />
+          <Property Name="dnSum" Type="money" />
+          <Property Name="dnCurrency_id" Type="int" />
+          <Property Name="dnSumOfficial" Type="money" />
+          <Property Name="dnOfficialCurrency_id" Type="int" />
+          <Property Name="TMP_field" Type="nvarchar" MaxLength="50" />
+          <Property Name="pdn_index" Type="int" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreditTax" Type="money" />
+          <Property Name="AgreementId" Type="int" />
+          <Property Name="ActDate" Type="smalldatetime" />
+          <Property Name="ActionsBy" Type="int" />
+        </EntityType>
+        <EntityType Name="PaymentsRU">
+          <Key>
+            <PropertyRef Name="id_plat" />
+          </Key>
+          <Property Name="id_plat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurOfPayment" Type="nvarchar" MaxLength="4000" />
+          <Property Name="applnumber" Type="nvarchar" MaxLength="4000" />
+          <Property Name="sum" Type="float" />
+          <Property Name="OurCase" Type="nvarchar(max)" />
+          <Property Name="TaxNum" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="500" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="Sum_for_reg" Type="float" />
+          <Property Name="currency_id" Type="int" />
+          <Property Name="User_id" Type="int" />
+          <Property Name="ts" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="old_plat_num" Type="int" />
+          <Property Name="deadline" Type="datetime" />
+          <Property Name="Paid" Type="datetime" />
+          <Property Name="File" Type="nchar" MaxLength="255" />
+          <Property Name="currency2_id" Type="int" />
+          <Property Name="Act" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pay" Type="bit" />
+          <Property Name="DateAct" Type="datetime" />
+          <Property Name="SumAct" Type="float" />
+          <Property Name="ASAP" Type="bit" />
+          <Property Name="DateStamp" Type="datetime" />
+          <Property Name="SumbyAct" Type="float" />
+          <Property Name="Buh_id" Type="int" />
+          <Property Name="TaxCodeUA" Type="int" />
+          <Property Name="OwnCountryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryinUA" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bank_id" Type="int" />
+          <Property Name="TaxOrder" Type="nvarchar" MaxLength="50" />
+          <Property Name="Writtenoff" Type="datetime" />
+          <Property Name="Invoice" Type="nvarchar" MaxLength="255" />
+          <Property Name="Remainder" Type="money" />
+          <Property Name="DNid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'nemo_fresh.dbo.PrePayment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PrePayment">
+          <Key>
+            <PropertyRef Name="id_prepayment" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="id_prepayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PreTaxNum" Type="nvarchar" MaxLength="255" />
+          <Property Name="PreTaxName" Type="nvarchar" MaxLength="255" />
+          <Property Name="PreSum" Type="money" />
+          <Property Name="DatePre" Type="datetime" />
+          <Property Name="remainder" Type="money" />
+          <Property Name="Done" Type="bit" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="4000" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="currency_id" Type="int" />
+          <Property Name="User_id" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PTariffsUA">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numeration" Type="int" />
+          <Property Name="PaymentCodeAll" Type="int" />
+          <Property Name="Payment Code" Type="int" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ActionName_in UKRLong" Type="nvarchar" MaxLength="255" />
+          <Property Name="ActionName_in UKR" Type="nvarchar" MaxLength="255" />
+          <Property Name="ActionNameForDN" Type="nvarchar" MaxLength="255" />
+          <Property Name="Official_fee_less" Type="money" />
+          <Property Name="Official_fee_fullNew" Type="money" />
+          <Property Name="ActionName_OfficialForInvoice" Type="nvarchar" MaxLength="255" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="Criteria" Type="smallint" />
+          <Property Name="Tariff" Type="money" />
+          <Property Name="Country" Type="nvarchar" MaxLength="2" />
+          <Property Name="Примечание" Type="nvarchar" MaxLength="255" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+          <Property Name="FormatField1NAF" Type="smallint" />
+          <Property Name="AdditionalField" Type="bit" />
+          <Property Name="ApplicationStage" Type="nvarchar" MaxLength="50" />
+          <Property Name="P_T_D" Type="nvarchar" MaxLength="50" />
+          <Property Name="TariffUA" Type="money" />
+          <Property Name="ApplicationStage_UA" Type="nvarchar" MaxLength="50" />
+          <Property Name="FormatField_UA" Type="smallint" />
+          <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="TypeCase" Type="int" />
+          <Property Name="Currency_id" Type="int" />
+          <Property Name="Official_fee_full" Type="money" />
+        </EntityType>
+        <EntityType Name="PurofPayment">
+          <Key>
+            <PropertyRef Name="id_PurofPayment" />
+          </Key>
+          <Property Name="id_PurofPayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurofPayment" Type="nvarchar" MaxLength="500" />
+          <Property Name="lenght" Type="int" />
+          <Property Name="Department_id" Type="int" />
+          <Property Name="Country_id" Type="int" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Groupname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserRightsOverrideID" Type="int" />
+          <Property Name="EditTrDueDates" Type="bit" />
+          <Property Name="EditTrDeadlines" Type="bit" />
+          <Property Name="EditTrFilingDate" Type="bit" />
+          <Property Name="EditShedules" Type="bit" />
+          <Property Name="ViewClientPages" Type="bit" />
+          <Property Name="isAdmin" Type="bit" />
+          <Property Name="EditPrDueDate" Type="bit" />
+          <Property Name="EditPrDeadlines" Type="bit" />
+          <Property Name="EditPrFilingDate" Type="bit" />
+          <Property Name="EditUserRights" Type="bit" />
+          <Property Name="CreateDebitNotes" Type="bit" />
+          <Property Name="ViewDebitNotes" Type="bit" />
+          <Property Name="EditDebitNotes" Type="bit" />
+          <Property Name="DebitNotesLevel2" Type="bit" />
+          <Property Name="ViewUnpaidDNsOnly" Type="bit" />
+          <Property Name="Accounting" Type="bit" />
+          <Property Name="CanGiveMoneyToCash" Type="bit" />
+          <Property Name="IsSecretary" Type="bit" />
+          <Property Name="Agents_SF" Type="bit" />
+          <Property Name="RestrictedAccess" Type="bit" />
+          <Property Name="EditCases" Type="bit" />
+          <Property Name="ViewPersons" Type="bit" />
+          <Property Name="EditPersons" Type="bit" />
+          <Property Name="AllowRemoteAccess" Type="bit" Nullable="false" />
+          <Property Name="AllowRemoteAccessExclusively" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_User" />
+          </Key>
+          <Property Name="id_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRealName" Type="nvarchar" MaxLength="255" />
+          <Property Name="UserPatronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserOldSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserGroup_id" Type="int" />
+          <Property Name="UserType_id" Type="int" />
+          <Property Name="Hours" Type="real" />
+          <Property Name="comment" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Boss_Id" Type="int" />
+          <Property Name="Boss_Id2" Type="int" />
+          <Property Name="Boss_Id3" Type="int" />
+          <Property Name="ComputerName" Type="nvarchar" MaxLength="255" />
+          <Property Name="UniqueUserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="PAFirmID" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExternalCaseComments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CasesCriteria" Type="nvarchar" MaxLength="255" />
+          <Property Name="NotWorking" Type="bit" />
+          <Property Name="Hours_comment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hours_Employee" Type="real" />
+          <Property Name="Vacation_days" Type="int" />
+          <Property Name="Vacation_hours" Type="real" />
+          <Property Name="Vacation_totalHours" Type="real" />
+          <Property Name="IsOfficially" Type="bit" />
+          <Property Name="ShowTM" Type="bit" />
+          <Property Name="ShowClosedCases" Type="bit" />
+          <Property Name="ShowOnlyTM" Type="bit" />
+          <Property Name="PersonalSkype" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkSkype" Type="nvarchar" MaxLength="50" />
+          <Property Name="PersonalEmails" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhones" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServerAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="ServerPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="AllowCashOperations" Type="bit" />
+          <Property Name="BirthDate" Type="smalldatetime" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="InfoPageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmployeeInfo" Type="nvarchar(max)" />
+          <Property Name="OfficeID" Type="int" />
+          <Property Name="FIRMID" Type="int" />
+          <Property Name="WorkingSince" Type="smalldatetime" />
+          <Property Name="TestNextAttemptDate" Type="date" />
+          <Property Name="NeedCaptchaInput" Type="bit" />
+          <Property Name="RestrictedWithoutEmailAuth" Type="bit" />
+          <Property Name="AllowRemoteAccess" Type="bit" Nullable="false" />
+          <Property Name="AllowRemoteAccessExclusively" Type="bit" Nullable="false" />
+          <Property Name="tstamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IsIntern" Type="bit" Nullable="false" />
+          <Property Name="WorkContactNumbers" Type="nvarchar" MaxLength="255" />
+          <Property Name="RegistrationAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="FactAddress" Type="nvarchar" MaxLength="255" />
+          <Property Name="Education" Type="nvarchar" MaxLength="255" />
+          <Property Name="Photo_link" Type="nvarchar" MaxLength="255" />
+          <Property Name="CV_link" Type="nvarchar" MaxLength="255" />
+          <Property Name="WorkingOut" Type="smalldatetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="Created_Date" Type="smalldatetime" />
+          <Property Name="Updated_By" Type="int" />
+          <Property Name="Updated_Date" Type="smalldatetime" />
+          <Property Name="SignatureLink" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsAdditionalVerification" Type="bit" />
+          <Property Name="PassedText" Type="bit" />
+        </EntityType>
+        <Association Name="FK_AccessLogWeb_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="AccessLogWeb" Type="Self.AccessLogWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="AccessLogWeb">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Countries_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Countries1" Type="Self.Countries" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="id_country" />
+            </Principal>
+            <Dependent Role="Countries1">
+              <PropertyRef Name="id_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DebitNotes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="DebitNotes" Type="Self.DebitNotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="DebitNotes">
+              <PropertyRef Name="ActionsBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_About banks">
+          <End Role="About banks" Type="Self.About banks" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="About banks">
+              <PropertyRef Name="Bank ID" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="Bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="id_country" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="region_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="id_currency" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="currency_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PTariffsUA_PTariffsUA">
+          <End Role="PTariffsUA" Type="Self.PTariffsUA" Multiplicity="1" />
+          <End Role="PTariffsUA1" Type="Self.PTariffsUA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PTariffsUA">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="PTariffsUA1">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserGroups">
+          <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserGroup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nemo_freshModelStoreContainer">
+          <EntitySet Name="About banks" EntityType="Self.About banks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccessLogWeb" EntityType="Self.AccessLogWeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccessLogWebIpAddress" EntityType="Self.AccessLogWebIpAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DebitNotes" EntityType="Self.DebitNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsRU" EntityType="Self.PaymentsRU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PTariffsUA" EntityType="Self.PTariffsUA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurofPayment" EntityType="Self.PurofPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrePayment" EntityType="Self.PrePayment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PrePayment].[id_prepayment] AS [id_prepayment], 
+    [PrePayment].[PreTaxNum] AS [PreTaxNum], 
+    [PrePayment].[PreTaxName] AS [PreTaxName], 
+    [PrePayment].[PreSum] AS [PreSum], 
+    [PrePayment].[DatePre] AS [DatePre], 
+    [PrePayment].[remainder] AS [remainder], 
+    [PrePayment].[Done] AS [Done], 
+    [PrePayment].[Comment] AS [Comment], 
+    [PrePayment].[CountryID] AS [CountryID], 
+    [PrePayment].[currency_id] AS [currency_id], 
+    [PrePayment].[User_id] AS [User_id], 
+    [PrePayment].[Active] AS [Active]
+    FROM [dbo].[PrePayment] AS [PrePayment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AccessLogWeb_Users" Association="Self.FK_AccessLogWeb_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccessLogWeb" EntitySet="AccessLogWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Countries_Countries" Association="Self.FK_Countries_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Countries1" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DebitNotes_Users" Association="Self.FK_DebitNotes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DebitNotes" EntitySet="DebitNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_About banks" Association="Self.FK_PaymentsRU_About banks">
+            <End Role="About banks" EntitySet="About banks" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Countries" Association="Self.FK_PaymentsRU_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Currencies" Association="Self.FK_PaymentsRU_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Users" Association="Self.FK_PaymentsRU_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PTariffsUA_PTariffsUA" Association="Self.FK_PTariffsUA_PTariffsUA">
+            <End Role="PTariffsUA" EntitySet="PTariffsUA" />
+            <End Role="PTariffsUA1" EntitySet="PTariffsUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserGroups" Association="Self.FK_Users_UserGroups">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nemo_freshModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="About_banks">
+          <Key>
+            <PropertyRef Name="Bank_ID" />
+          </Key>
+          <Property Name="Bank_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AccountN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameUkr" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameEngRus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BankCorrespondent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CorrespondentField" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BankIndex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankLevel" Type="Int32" />
+          <Property Name="Index_IN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Index_OUT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialCodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialCodes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DetailsOfPayment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BeneficiaryAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Registration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameFirmOtherLang" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AddressFirmOtherLang" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NameFirmEng" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AddressFirmEng" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DirectorOtherLang" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DirectorEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patentname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PatentNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beneficiary_bank" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Intermediary_bank" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PaymentsRU" Relationship="Self.FK_PaymentsRU_About_banks" FromRole="About_banks" ToRole="PaymentsRU" />
+        </EntityType>
+        <EntityType Name="AccessLogWeb">
+          <Key>
+            <PropertyRef Name="id_inout" />
+          </Key>
+          <Property Name="id_inout" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time_checkin" Type="DateTime" Precision="3" />
+          <Property Name="time_checkout" Type="DateTime" Precision="0" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pageurl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ip_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comp_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_AccessLogWeb_Users" FromRole="AccessLogWeb" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="AccessLogWebIpAddress">
+          <Key>
+            <PropertyRef Name="AccessLogWebIpAddressID" />
+          </Key>
+          <Property Name="AccessLogWebIpAddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IpAddress" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IsAllowed" Type="Boolean" Nullable="false" />
+          <Property Name="IpAddressDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="id_country" />
+          </Key>
+          <Property Name="id_country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Eng" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country_Rus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country_Ukr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Favourite" Type="Boolean" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Country_CN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country_BE" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_ES" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_PT" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_DE" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_FR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_IT" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_PL" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_JA" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_LT" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_LV" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Country_CZ" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Countries1" Relationship="Self.FK_Countries_Countries" FromRole="Countries" ToRole="Countries1" />
+          <NavigationProperty Name="Countries2" Relationship="Self.FK_Countries_Countries" FromRole="Countries1" ToRole="Countries" />
+          <NavigationProperty Name="PaymentsRU" Relationship="Self.FK_PaymentsRU_Countries" FromRole="Countries" ToRole="PaymentsRU" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="id_currency" />
+          </Key>
+          <Property Name="id_currency" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="currencycode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="currencyname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="sortorder" Type="Int32" />
+          <NavigationProperty Name="PaymentsRU" Relationship="Self.FK_PaymentsRU_Currencies" FromRole="Currencies" ToRole="PaymentsRU" />
+        </EntityType>
+        <EntityType Name="DebitNotes">
+          <Key>
+            <PropertyRef Name="ID_DN" />
+          </Key>
+          <Property Name="ID_DN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Case" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Date1" Type="DateTime" Precision="0" />
+          <Property Name="Sum1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Sumплатить" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Official" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Appl_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="F_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Access_level" Type="Boolean" />
+          <Property Name="File" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TempDoc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FinalPDF" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PDFValidTill" Type="DateTime" Precision="0" />
+          <Property Name="Ref" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Sum_" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SumEURO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SumUA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SumRU" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Akt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Sum1_EURO_inf" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credit_note" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Official_EURO" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="x" Type="Int32" />
+          <Property Name="Action" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FilePaid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Changes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BankIndex" Type="Int32" />
+          <Property Name="dnSum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="dnCurrency_id" Type="Int32" />
+          <Property Name="dnSumOfficial" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="dnOfficialCurrency_id" Type="Int32" />
+          <Property Name="TMP_field" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pdn_index" Type="Int32" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreditTax" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AgreementId" Type="Int32" />
+          <Property Name="ActDate" Type="DateTime" Precision="0" />
+          <Property Name="ActionsBy" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_DebitNotes_Users" FromRole="DebitNotes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PaymentsRU">
+          <Key>
+            <PropertyRef Name="id_plat" />
+          </Key>
+          <Property Name="id_plat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurOfPayment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="applnumber" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="sum" Type="Double" />
+          <Property Name="OurCase" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaxNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="region_id" Type="Int32" />
+          <Property Name="Sum_for_reg" Type="Double" />
+          <Property Name="currency_id" Type="Int32" />
+          <Property Name="User_id" Type="Int32" />
+          <Property Name="ts" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="old_plat_num" Type="Int32" />
+          <Property Name="deadline" Type="DateTime" Precision="3" />
+          <Property Name="Paid" Type="DateTime" Precision="3" />
+          <Property Name="File" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="currency2_id" Type="Int32" />
+          <Property Name="Act" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Pay" Type="Boolean" />
+          <Property Name="DateAct" Type="DateTime" Precision="3" />
+          <Property Name="SumAct" Type="Double" />
+          <Property Name="ASAP" Type="Boolean" />
+          <Property Name="DateStamp" Type="DateTime" Precision="3" />
+          <Property Name="SumbyAct" Type="Double" />
+          <Property Name="Buh_id" Type="Int32" />
+          <Property Name="TaxCodeUA" Type="Int32" />
+          <Property Name="OwnCountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryinUA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bank_id" Type="Int32" />
+          <Property Name="TaxOrder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Writtenoff" Type="DateTime" Precision="3" />
+          <Property Name="Invoice" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Remainder" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DNid" Type="Int32" />
+          <NavigationProperty Name="About_banks" Relationship="Self.FK_PaymentsRU_About_banks" FromRole="PaymentsRU" ToRole="About_banks" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_PaymentsRU_Countries" FromRole="PaymentsRU" ToRole="Countries" />
+          <NavigationProperty Name="Currencies" Relationship="Self.FK_PaymentsRU_Currencies" FromRole="PaymentsRU" ToRole="Currencies" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_PaymentsRU_Users" FromRole="PaymentsRU" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="PTariffsUA">
+          <Key>
+            <PropertyRef Name="ActionID" />
+          </Key>
+          <Property Name="ActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numeration" Type="Int32" />
+          <Property Name="PaymentCodeAll" Type="Int32" />
+          <Property Name="Payment_Code" Type="Int32" />
+          <Property Name="ActionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName_in_UKRLong" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName_in_UKR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ActionNameForDN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Official_fee_less" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Official_fee_fullNew" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ActionName_OfficialForInvoice" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Criteria" Type="Int16" />
+          <Property Name="Tariff" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Country" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Примечание" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FormatField1NAF" Type="Int16" />
+          <Property Name="AdditionalField" Type="Boolean" />
+          <Property Name="ApplicationStage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="P_T_D" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TariffUA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ApplicationStage_UA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FormatField_UA" Type="Int16" />
+          <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TypeCase" Type="Int32" />
+          <Property Name="Currency_id" Type="Int32" />
+          <Property Name="Official_fee_full" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PTariffsUA1" Relationship="Self.FK_PTariffsUA_PTariffsUA" FromRole="PTariffsUA" ToRole="PTariffsUA1" />
+          <NavigationProperty Name="PTariffsUA2" Relationship="Self.FK_PTariffsUA_PTariffsUA" FromRole="PTariffsUA1" ToRole="PTariffsUA" />
+        </EntityType>
+        <EntityType Name="PurofPayment">
+          <Key>
+            <PropertyRef Name="id_PurofPayment" />
+          </Key>
+          <Property Name="id_PurofPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurofPayment1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="lenght" Type="Int32" />
+          <Property Name="Department_id" Type="Int32" />
+          <Property Name="Country_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Groupname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserRightsOverrideID" Type="Int32" />
+          <Property Name="EditTrDueDates" Type="Boolean" />
+          <Property Name="EditTrDeadlines" Type="Boolean" />
+          <Property Name="EditTrFilingDate" Type="Boolean" />
+          <Property Name="EditShedules" Type="Boolean" />
+          <Property Name="ViewClientPages" Type="Boolean" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <Property Name="EditPrDueDate" Type="Boolean" />
+          <Property Name="EditPrDeadlines" Type="Boolean" />
+          <Property Name="EditPrFilingDate" Type="Boolean" />
+          <Property Name="EditUserRights" Type="Boolean" />
+          <Property Name="CreateDebitNotes" Type="Boolean" />
+          <Property Name="ViewDebitNotes" Type="Boolean" />
+          <Property Name="EditDebitNotes" Type="Boolean" />
+          <Property Name="DebitNotesLevel2" Type="Boolean" />
+          <Property Name="ViewUnpaidDNsOnly" Type="Boolean" />
+          <Property Name="Accounting" Type="Boolean" />
+          <Property Name="CanGiveMoneyToCash" Type="Boolean" />
+          <Property Name="IsSecretary" Type="Boolean" />
+          <Property Name="Agents_SF" Type="Boolean" />
+          <Property Name="RestrictedAccess" Type="Boolean" />
+          <Property Name="EditCases" Type="Boolean" />
+          <Property Name="ViewPersons" Type="Boolean" />
+          <Property Name="EditPersons" Type="Boolean" />
+          <Property Name="AllowRemoteAccess" Type="Boolean" Nullable="false" />
+          <Property Name="AllowRemoteAccessExclusively" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserGroups" FromRole="UserGroups" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id_User" />
+          </Key>
+          <Property Name="id_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRealName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UserPatronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserOldSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserGroup_id" Type="Int32" />
+          <Property Name="UserType_id" Type="Int32" />
+          <Property Name="Hours" Type="Single" />
+          <Property Name="comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Boss_Id" Type="Int32" />
+          <Property Name="Boss_Id2" Type="Int32" />
+          <Property Name="Boss_Id3" Type="Int32" />
+          <Property Name="ComputerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UniqueUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="PAFirmID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExternalCaseComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CasesCriteria" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NotWorking" Type="Boolean" />
+          <Property Name="Hours_comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hours_Employee" Type="Single" />
+          <Property Name="Vacation_days" Type="Int32" />
+          <Property Name="Vacation_hours" Type="Single" />
+          <Property Name="Vacation_totalHours" Type="Single" />
+          <Property Name="IsOfficially" Type="Boolean" />
+          <Property Name="ShowTM" Type="Boolean" />
+          <Property Name="ShowClosedCases" Type="Boolean" />
+          <Property Name="ShowOnlyTM" Type="Boolean" />
+          <Property Name="PersonalSkype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkSkype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalEmails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServerAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ServerPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AllowCashOperations" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="InfoPageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="Int32" />
+          <Property Name="FIRMID" Type="Int32" />
+          <Property Name="WorkingSince" Type="DateTime" Precision="0" />
+          <Property Name="TestNextAttemptDate" Type="DateTime" Precision="0" />
+          <Property Name="NeedCaptchaInput" Type="Boolean" />
+          <Property Name="RestrictedWithoutEmailAuth" Type="Boolean" />
+          <Property Name="AllowRemoteAccess" Type="Boolean" Nullable="false" />
+          <Property Name="AllowRemoteAccessExclusively" Type="Boolean" Nullable="false" />
+          <Property Name="tstamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsIntern" Type="Boolean" Nullable="false" />
+          <Property Name="WorkContactNumbers" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FactAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Education" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Photo_link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CV_link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingOut" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Created_Date" Type="DateTime" Precision="0" />
+          <Property Name="Updated_By" Type="Int32" />
+          <Property Name="Updated_Date" Type="DateTime" Precision="0" />
+          <Property Name="SignatureLink" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdditionalVerification" Type="Boolean" />
+          <Property Name="PassedText" Type="Boolean" />
+          <NavigationProperty Name="AccessLogWeb" Relationship="Self.FK_AccessLogWeb_Users" FromRole="Users" ToRole="AccessLogWeb" />
+          <NavigationProperty Name="DebitNotes" Relationship="Self.FK_DebitNotes_Users" FromRole="Users" ToRole="DebitNotes" />
+          <NavigationProperty Name="PaymentsRU" Relationship="Self.FK_PaymentsRU_Users" FromRole="Users" ToRole="PaymentsRU" />
+          <NavigationProperty Name="UserGroups" Relationship="Self.FK_Users_UserGroups" FromRole="Users" ToRole="UserGroups" />
+        </EntityType>
+        <EntityType Name="PrePayment">
+          <Key>
+            <PropertyRef Name="id_prepayment" />
+            <PropertyRef Name="Active" />
+          </Key>
+          <Property Name="id_prepayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PreTaxNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PreTaxName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PreSum" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DatePre" Type="DateTime" Precision="3" />
+          <Property Name="remainder" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Done" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="currency_id" Type="Int32" />
+          <Property Name="User_id" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PaymentsRU_About_banks">
+          <End Role="About_banks" Type="Self.About_banks" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="About_banks">
+              <PropertyRef Name="Bank_ID" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="Bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccessLogWeb_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="AccessLogWeb" Type="Self.AccessLogWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="AccessLogWeb">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Countries_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Countries1" Type="Self.Countries" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="id_country" />
+            </Principal>
+            <Dependent Role="Countries1">
+              <PropertyRef Name="id_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="id_country" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="region_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="id_currency" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="currency_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DebitNotes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="DebitNotes" Type="Self.DebitNotes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="DebitNotes">
+              <PropertyRef Name="ActionsBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentsRU_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="PaymentsRU" Type="Self.PaymentsRU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id_User" />
+            </Principal>
+            <Dependent Role="PaymentsRU">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PTariffsUA_PTariffsUA">
+          <End Role="PTariffsUA" Type="Self.PTariffsUA" Multiplicity="1" />
+          <End Role="PTariffsUA1" Type="Self.PTariffsUA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="PTariffsUA">
+              <PropertyRef Name="ActionID" />
+            </Principal>
+            <Dependent Role="PTariffsUA1">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserGroups">
+          <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserGroup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nemo_freshEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="About_banks" EntityType="Self.About_banks" />
+          <EntitySet Name="AccessLogWeb" EntityType="Self.AccessLogWeb" />
+          <EntitySet Name="AccessLogWebIpAddress" EntityType="Self.AccessLogWebIpAddress" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" />
+          <EntitySet Name="DebitNotes" EntityType="Self.DebitNotes" />
+          <EntitySet Name="PaymentsRU" EntityType="Self.PaymentsRU" />
+          <EntitySet Name="PTariffsUA" EntityType="Self.PTariffsUA" />
+          <EntitySet Name="PurofPayment" EntityType="Self.PurofPayment" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="PrePayment" EntityType="Self.PrePayment" />
+          <AssociationSet Name="FK_PaymentsRU_About_banks" Association="Self.FK_PaymentsRU_About_banks">
+            <End Role="About_banks" EntitySet="About_banks" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccessLogWeb_Users" Association="Self.FK_AccessLogWeb_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccessLogWeb" EntitySet="AccessLogWeb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Countries_Countries" Association="Self.FK_Countries_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Countries1" EntitySet="Countries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Countries" Association="Self.FK_PaymentsRU_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Currencies" Association="Self.FK_PaymentsRU_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DebitNotes_Users" Association="Self.FK_DebitNotes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DebitNotes" EntitySet="DebitNotes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentsRU_Users" Association="Self.FK_PaymentsRU_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="PaymentsRU" EntitySet="PaymentsRU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PTariffsUA_PTariffsUA" Association="Self.FK_PTariffsUA_PTariffsUA">
+            <End Role="PTariffsUA" EntitySet="PTariffsUA" />
+            <End Role="PTariffsUA1" EntitySet="PTariffsUA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserGroups" Association="Self.FK_Users_UserGroups">
+            <End Role="UserGroups" EntitySet="UserGroups" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nemo_freshModelStoreContainer" CdmEntityContainer="nemo_freshEntities">
+          <EntitySetMapping Name="About_banks">
+            <EntityTypeMapping TypeName="nemo_freshModel.About_banks">
+              <MappingFragment StoreEntitySet="About banks">
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Ref" ColumnName="Ref" />
+                <ScalarProperty Name="RegCode" ColumnName="RegCode" />
+                <ScalarProperty Name="AccountN" ColumnName="AccountN" />
+                <ScalarProperty Name="NameUkr" ColumnName="NameUkr" />
+                <ScalarProperty Name="NameEngRus" ColumnName="NameEngRus" />
+                <ScalarProperty Name="BankCorrespondent" ColumnName="BankCorrespondent" />
+                <ScalarProperty Name="CorrespondentField" ColumnName="CorrespondentField" />
+                <ScalarProperty Name="BankIndex" ColumnName="BankIndex" />
+                <ScalarProperty Name="BankLevel" ColumnName="BankLevel" />
+                <ScalarProperty Name="Index_IN" ColumnName="Index_IN" />
+                <ScalarProperty Name="Index_OUT" ColumnName="Index_OUT" />
+                <ScalarProperty Name="SpecialCodeName" ColumnName="SpecialCodeName" />
+                <ScalarProperty Name="SpecialCodes" ColumnName="SpecialCodes" />
+                <ScalarProperty Name="DetailsOfPayment" ColumnName="DetailsOfPayment" />
+                <ScalarProperty Name="BeneficiaryAddress" ColumnName="BeneficiaryAddress" />
+                <ScalarProperty Name="Registration" ColumnName="Registration" />
+                <ScalarProperty Name="NameFirmOtherLang" ColumnName="NameFirmOtherLang" />
+                <ScalarProperty Name="AddressFirmOtherLang" ColumnName="AddressFirmOtherLang" />
+                <ScalarProperty Name="NameFirmEng" ColumnName="NameFirmEng" />
+                <ScalarProperty Name="AddressFirmEng" ColumnName="AddressFirmEng" />
+                <ScalarProperty Name="DirectorOtherLang" ColumnName="DirectorOtherLang" />
+                <ScalarProperty Name="DirectorEng" ColumnName="DirectorEng" />
+                <ScalarProperty Name="Patentname" ColumnName="Patentname" />
+                <ScalarProperty Name="PatentNameEng" ColumnName="PatentNameEng" />
+                <ScalarProperty Name="Beneficiary_bank" ColumnName="Beneficiary bank" />
+                <ScalarProperty Name="Intermediary_bank" ColumnName="Intermediary_bank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessLogWeb">
+            <EntityTypeMapping TypeName="nemo_freshModel.AccessLogWeb">
+              <MappingFragment StoreEntitySet="AccessLogWeb">
+                <ScalarProperty Name="id_inout" ColumnName="id_inout" />
+                <ScalarProperty Name="time_checkin" ColumnName="time_checkin" />
+                <ScalarProperty Name="time_checkout" ColumnName="time_checkout" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pageurl" ColumnName="pageurl" />
+                <ScalarProperty Name="ip_user" ColumnName="ip_user" />
+                <ScalarProperty Name="comp_user" ColumnName="comp_user" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessLogWebIpAddress">
+            <EntityTypeMapping TypeName="nemo_freshModel.AccessLogWebIpAddress">
+              <MappingFragment StoreEntitySet="AccessLogWebIpAddress">
+                <ScalarProperty Name="AccessLogWebIpAddressID" ColumnName="AccessLogWebIpAddressID" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="IsAllowed" ColumnName="IsAllowed" />
+                <ScalarProperty Name="IpAddressDescription" ColumnName="IpAddressDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="nemo_freshModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="id_country" ColumnName="id_country" />
+                <ScalarProperty Name="Country_Eng" ColumnName="Country_Eng" />
+                <ScalarProperty Name="Country_Rus" ColumnName="Country_Rus" />
+                <ScalarProperty Name="Country_Ukr" ColumnName="Country_Ukr" />
+                <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+                <ScalarProperty Name="Favourite" ColumnName="Favourite" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+                <ScalarProperty Name="Country_CN" ColumnName="Country_CN" />
+                <ScalarProperty Name="Country_BE" ColumnName="Country_BE" />
+                <ScalarProperty Name="Country_ES" ColumnName="Country_ES" />
+                <ScalarProperty Name="Country_PT" ColumnName="Country_PT" />
+                <ScalarProperty Name="Country_DE" ColumnName="Country_DE" />
+                <ScalarProperty Name="Country_FR" ColumnName="Country_FR" />
+                <ScalarProperty Name="Country_IT" ColumnName="Country_IT" />
+                <ScalarProperty Name="Country_PL" ColumnName="Country_PL" />
+                <ScalarProperty Name="Country_JA" ColumnName="Country_JA" />
+                <ScalarProperty Name="Country_LT" ColumnName="Country_LT" />
+                <ScalarProperty Name="Country_LV" ColumnName="Country_LV" />
+                <ScalarProperty Name="Country_CZ" ColumnName="Country_CZ" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="nemo_freshModel.Currencies">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="id_currency" ColumnName="id_currency" />
+                <ScalarProperty Name="currencycode" ColumnName="currencycode" />
+                <ScalarProperty Name="currencyname" ColumnName="currencyname" />
+                <ScalarProperty Name="sortorder" ColumnName="sortorder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DebitNotes">
+            <EntityTypeMapping TypeName="nemo_freshModel.DebitNotes">
+              <MappingFragment StoreEntitySet="DebitNotes">
+                <ScalarProperty Name="ID_DN" ColumnName="ID_DN" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Case" ColumnName="Case" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="Date1" ColumnName="Date1" />
+                <ScalarProperty Name="Sum1" ColumnName="Sum1" />
+                <ScalarProperty Name="Sumплатить" ColumnName="Sumплатить" />
+                <ScalarProperty Name="Official" ColumnName="Official" />
+                <ScalarProperty Name="Appl_ID" ColumnName="Appl_ID" />
+                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
+                <ScalarProperty Name="Access_level" ColumnName="Access_level" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="TempDoc" ColumnName="TempDoc" />
+                <ScalarProperty Name="FinalPDF" ColumnName="FinalPDF" />
+                <ScalarProperty Name="PDFValidTill" ColumnName="PDFValidTill" />
+                <ScalarProperty Name="Ref" ColumnName="Ref" />
+                <ScalarProperty Name="Sum_" ColumnName="Sum$" />
+                <ScalarProperty Name="SumEURO" ColumnName="SumEURO" />
+                <ScalarProperty Name="SumUA" ColumnName="SumUA" />
+                <ScalarProperty Name="SumRU" ColumnName="SumRU" />
+                <ScalarProperty Name="Akt" ColumnName="Akt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Sum1_EURO_inf" ColumnName="Sum1_EURO_inf" />
+                <ScalarProperty Name="Credit_note" ColumnName="Credit note" />
+                <ScalarProperty Name="Official_EURO" ColumnName="Official_EURO" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="FilePaid" ColumnName="FilePaid" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+                <ScalarProperty Name="Changes" ColumnName="Changes" />
+                <ScalarProperty Name="BankIndex" ColumnName="BankIndex" />
+                <ScalarProperty Name="dnSum" ColumnName="dnSum" />
+                <ScalarProperty Name="dnCurrency_id" ColumnName="dnCurrency_id" />
+                <ScalarProperty Name="dnSumOfficial" ColumnName="dnSumOfficial" />
+                <ScalarProperty Name="dnOfficialCurrency_id" ColumnName="dnOfficialCurrency_id" />
+                <ScalarProperty Name="TMP_field" ColumnName="TMP_field" />
+                <ScalarProperty Name="pdn_index" ColumnName="pdn_index" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+                <ScalarProperty Name="CreditTax" ColumnName="CreditTax" />
+                <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
+                <ScalarProperty Name="ActDate" ColumnName="ActDate" />
+                <ScalarProperty Name="ActionsBy" ColumnName="ActionsBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsRU">
+            <EntityTypeMapping TypeName="nemo_freshModel.PaymentsRU">
+              <MappingFragment StoreEntitySet="PaymentsRU">
+                <ScalarProperty Name="id_plat" ColumnName="id_plat" />
+                <ScalarProperty Name="PurOfPayment" ColumnName="PurOfPayment" />
+                <ScalarProperty Name="applnumber" ColumnName="applnumber" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="OurCase" ColumnName="OurCase" />
+                <ScalarProperty Name="TaxNum" ColumnName="TaxNum" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="Sum_for_reg" ColumnName="Sum_for_reg" />
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="ts" ColumnName="ts" />
+                <ScalarProperty Name="old_plat_num" ColumnName="old_plat_num" />
+                <ScalarProperty Name="deadline" ColumnName="deadline" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="currency2_id" ColumnName="currency2_id" />
+                <ScalarProperty Name="Act" ColumnName="Act" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="DateAct" ColumnName="DateAct" />
+                <ScalarProperty Name="SumAct" ColumnName="SumAct" />
+                <ScalarProperty Name="ASAP" ColumnName="ASAP" />
+                <ScalarProperty Name="DateStamp" ColumnName="DateStamp" />
+                <ScalarProperty Name="SumbyAct" ColumnName="SumbyAct" />
+                <ScalarProperty Name="Buh_id" ColumnName="Buh_id" />
+                <ScalarProperty Name="TaxCodeUA" ColumnName="TaxCodeUA" />
+                <ScalarProperty Name="OwnCountryCode" ColumnName="OwnCountryCode" />
+                <ScalarProperty Name="CountryinUA" ColumnName="CountryinUA" />
+                <ScalarProperty Name="Bank_id" ColumnName="Bank_id" />
+                <ScalarProperty Name="TaxOrder" ColumnName="TaxOrder" />
+                <ScalarProperty Name="Writtenoff" ColumnName="Writtenoff" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="Remainder" ColumnName="Remainder" />
+                <ScalarProperty Name="DNid" ColumnName="DNid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PTariffsUA">
+            <EntityTypeMapping TypeName="nemo_freshModel.PTariffsUA">
+              <MappingFragment StoreEntitySet="PTariffsUA">
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="Numeration" ColumnName="Numeration" />
+                <ScalarProperty Name="PaymentCodeAll" ColumnName="PaymentCodeAll" />
+                <ScalarProperty Name="Payment_Code" ColumnName="Payment Code" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ActionName_in_UKRLong" ColumnName="ActionName_in UKRLong" />
+                <ScalarProperty Name="ActionName_in_UKR" ColumnName="ActionName_in UKR" />
+                <ScalarProperty Name="ActionNameForDN" ColumnName="ActionNameForDN" />
+                <ScalarProperty Name="Official_fee_less" ColumnName="Official_fee_less" />
+                <ScalarProperty Name="Official_fee_fullNew" ColumnName="Official_fee_fullNew" />
+                <ScalarProperty Name="ActionName_OfficialForInvoice" ColumnName="ActionName_OfficialForInvoice" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
+                <ScalarProperty Name="Tariff" ColumnName="Tariff" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Примечание" ColumnName="Примечание" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="FormatField1NAF" ColumnName="FormatField1NAF" />
+                <ScalarProperty Name="AdditionalField" ColumnName="AdditionalField" />
+                <ScalarProperty Name="ApplicationStage" ColumnName="ApplicationStage" />
+                <ScalarProperty Name="P_T_D" ColumnName="P_T_D" />
+                <ScalarProperty Name="TariffUA" ColumnName="TariffUA" />
+                <ScalarProperty Name="ApplicationStage_UA" ColumnName="ApplicationStage_UA" />
+                <ScalarProperty Name="FormatField_UA" ColumnName="FormatField_UA" />
+                <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+                <ScalarProperty Name="TypeCase" ColumnName="TypeCase" />
+                <ScalarProperty Name="Currency_id" ColumnName="Currency_id" />
+                <ScalarProperty Name="Official_fee_full" ColumnName="Official_fee_full" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurofPayment">
+            <EntityTypeMapping TypeName="nemo_freshModel.PurofPayment">
+              <MappingFragment StoreEntitySet="PurofPayment">
+                <ScalarProperty Name="id_PurofPayment" ColumnName="id_PurofPayment" />
+                <ScalarProperty Name="PurofPayment1" ColumnName="PurofPayment" />
+                <ScalarProperty Name="lenght" ColumnName="lenght" />
+                <ScalarProperty Name="Department_id" ColumnName="Department_id" />
+                <ScalarProperty Name="Country_id" ColumnName="Country_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="nemo_freshModel.UserGroups">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="Groupname" ColumnName="Groupname" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserRightsOverrideID" ColumnName="UserRightsOverrideID" />
+                <ScalarProperty Name="EditTrDueDates" ColumnName="EditTrDueDates" />
+                <ScalarProperty Name="EditTrDeadlines" ColumnName="EditTrDeadlines" />
+                <ScalarProperty Name="EditTrFilingDate" ColumnName="EditTrFilingDate" />
+                <ScalarProperty Name="EditShedules" ColumnName="EditShedules" />
+                <ScalarProperty Name="ViewClientPages" ColumnName="ViewClientPages" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="EditPrDueDate" ColumnName="EditPrDueDate" />
+                <ScalarProperty Name="EditPrDeadlines" ColumnName="EditPrDeadlines" />
+                <ScalarProperty Name="EditPrFilingDate" ColumnName="EditPrFilingDate" />
+                <ScalarProperty Name="EditUserRights" ColumnName="EditUserRights" />
+                <ScalarProperty Name="CreateDebitNotes" ColumnName="CreateDebitNotes" />
+                <ScalarProperty Name="ViewDebitNotes" ColumnName="ViewDebitNotes" />
+                <ScalarProperty Name="EditDebitNotes" ColumnName="EditDebitNotes" />
+                <ScalarProperty Name="DebitNotesLevel2" ColumnName="DebitNotesLevel2" />
+                <ScalarProperty Name="ViewUnpaidDNsOnly" ColumnName="ViewUnpaidDNsOnly" />
+                <ScalarProperty Name="Accounting" ColumnName="Accounting" />
+                <ScalarProperty Name="CanGiveMoneyToCash" ColumnName="CanGiveMoneyToCash" />
+                <ScalarProperty Name="IsSecretary" ColumnName="IsSecretary" />
+                <ScalarProperty Name="Agents_SF" ColumnName="Agents_SF" />
+                <ScalarProperty Name="RestrictedAccess" ColumnName="RestrictedAccess" />
+                <ScalarProperty Name="EditCases" ColumnName="EditCases" />
+                <ScalarProperty Name="ViewPersons" ColumnName="ViewPersons" />
+                <ScalarProperty Name="EditPersons" ColumnName="EditPersons" />
+                <ScalarProperty Name="AllowRemoteAccess" ColumnName="AllowRemoteAccess" />
+                <ScalarProperty Name="AllowRemoteAccessExclusively" ColumnName="AllowRemoteAccessExclusively" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="nemo_freshModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id_User" ColumnName="id_User" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserRealName" ColumnName="UserRealName" />
+                <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
+                <ScalarProperty Name="UserOldSurname" ColumnName="UserOldSurname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserGroup_id" ColumnName="UserGroup_id" />
+                <ScalarProperty Name="UserType_id" ColumnName="UserType_id" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Boss_Id" ColumnName="Boss_Id" />
+                <ScalarProperty Name="Boss_Id2" ColumnName="Boss_Id2" />
+                <ScalarProperty Name="Boss_Id3" ColumnName="Boss_Id3" />
+                <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+                <ScalarProperty Name="UniqueUserID" ColumnName="UniqueUserID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="PAFirmID" ColumnName="PAFirmID" />
+                <ScalarProperty Name="ExternalCaseComments" ColumnName="ExternalCaseComments" />
+                <ScalarProperty Name="CasesCriteria" ColumnName="CasesCriteria" />
+                <ScalarProperty Name="NotWorking" ColumnName="NotWorking" />
+                <ScalarProperty Name="Hours_comment" ColumnName="Hours_comment" />
+                <ScalarProperty Name="Hours_Employee" ColumnName="Hours_Employee" />
+                <ScalarProperty Name="Vacation_days" ColumnName="Vacation_days" />
+                <ScalarProperty Name="Vacation_hours" ColumnName="Vacation_hours" />
+                <ScalarProperty Name="Vacation_totalHours" ColumnName="Vacation_totalHours" />
+                <ScalarProperty Name="IsOfficially" ColumnName="IsOfficially" />
+                <ScalarProperty Name="ShowTM" ColumnName="ShowTM" />
+                <ScalarProperty Name="ShowClosedCases" ColumnName="ShowClosedCases" />
+                <ScalarProperty Name="ShowOnlyTM" ColumnName="ShowOnlyTM" />
+                <ScalarProperty Name="PersonalSkype" ColumnName="PersonalSkype" />
+                <ScalarProperty Name="WorkSkype" ColumnName="WorkSkype" />
+                <ScalarProperty Name="PersonalEmails" ColumnName="PersonalEmails" />
+                <ScalarProperty Name="ContactPhones" ColumnName="ContactPhones" />
+                <ScalarProperty Name="ServerAccount" ColumnName="ServerAccount" />
+                <ScalarProperty Name="ServerPassword" ColumnName="ServerPassword" />
+                <ScalarProperty Name="AllowCashOperations" ColumnName="AllowCashOperations" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="InfoPageName" ColumnName="InfoPageName" />
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="EmployeeInfo" ColumnName="EmployeeInfo" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="FIRMID" ColumnName="FIRMID" />
+                <ScalarProperty Name="WorkingSince" ColumnName="WorkingSince" />
+                <ScalarProperty Name="TestNextAttemptDate" ColumnName="TestNextAttemptDate" />
+                <ScalarProperty Name="NeedCaptchaInput" ColumnName="NeedCaptchaInput" />
+                <ScalarProperty Name="RestrictedWithoutEmailAuth" ColumnName="RestrictedWithoutEmailAuth" />
+                <ScalarProperty Name="AllowRemoteAccess" ColumnName="AllowRemoteAccess" />
+                <ScalarProperty Name="AllowRemoteAccessExclusively" ColumnName="AllowRemoteAccessExclusively" />
+                <ScalarProperty Name="tstamp" ColumnName="tstamp" />
+                <ScalarProperty Name="IsIntern" ColumnName="IsIntern" />
+                <ScalarProperty Name="WorkContactNumbers" ColumnName="WorkContactNumbers" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="FactAddress" ColumnName="FactAddress" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Photo_link" ColumnName="Photo_link" />
+                <ScalarProperty Name="CV_link" ColumnName="CV_link" />
+                <ScalarProperty Name="WorkingOut" ColumnName="WorkingOut" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Updated_Date" ColumnName="Updated_Date" />
+                <ScalarProperty Name="SignatureLink" ColumnName="SignatureLink" />
+                <ScalarProperty Name="IsAdditionalVerification" ColumnName="IsAdditionalVerification" />
+                <ScalarProperty Name="PassedText" ColumnName="PassedText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrePayment">
+            <EntityTypeMapping TypeName="nemo_freshModel.PrePayment">
+              <MappingFragment StoreEntitySet="PrePayment">
+                <ScalarProperty Name="id_prepayment" ColumnName="id_prepayment" />
+                <ScalarProperty Name="PreTaxNum" ColumnName="PreTaxNum" />
+                <ScalarProperty Name="PreTaxName" ColumnName="PreTaxName" />
+                <ScalarProperty Name="PreSum" ColumnName="PreSum" />
+                <ScalarProperty Name="DatePre" ColumnName="DatePre" />
+                <ScalarProperty Name="remainder" ColumnName="remainder" />
+                <ScalarProperty Name="Done" ColumnName="Done" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

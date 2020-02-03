@@ -1,0 +1,158 @@
+﻿@model PlatDiplom.Models.PlatModel.PaymentsView
+@using PlatDiplom.Helpers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Index", "Payments", FormMethod.Get))
+{
+    <div class="form-group" style="float:left">
+        @Html.DropDownList("country_id", ViewBag.Countries as SelectList, new { @id = "country_id", @class = "form-control" })
+        @*@Html.DropDownListFor(model=>model.FilterPlat.SelectedCountry, Model.FilterPlat.CountriesList,new { @id = "country_id", @class = "form-control" })*@
+    </div>
+    <div class="form-group" style="float:left">
+        @*@Html.DropDownListFor(model => model.FilterPlat.SelectedStatus, Model.FilterPlat.StatusList, new { @id = "status_id", @class = "form-control" })*@
+        @Html.DropDownList("Status", ViewBag.Status as SelectList, new { @id = "status_id", @class = "form-control" })
+    </div>
+
+    <input type="submit" class="btn btn-success">
+}
+
+<table class="table table-bordered table-hover col-sm-12 col-md-12 col-lg-12">
+    <thead>
+        <tr>
+            <th>
+                
+                @Html.CheckBox("AllClientList", false, new { @class = "AllClientList", @title = "Checked all" })
+            </th>
+            <th>Назначение платежа</th>
+
+            <th>Сумма</th>
+            <th>Дело</th>
+
+            <th>Кто заказал</th>
+            <th>Paid</th>
+            <th>File</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaymentsList)//PaymentsList)
+        {
+            <tr>
+                <td>
+                    @Html.CheckBox("ClientList", false, new { @class = "ClientList", @IdClient = item.id_plat.ToString() })
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurOfPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OurCase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users.Username)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.File)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_plat })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+
+    <button type="button" class="btn btn-primary ClientSearch_ShowCases">Show items</button>
+
+</div>
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index",
+   new
+       {
+      page = x,
+      country_id = Request.QueryString["country_id"],
+      Status = Request.QueryString["Status"]
+
+    }))
+</div>
+
+<script>
+
+    $('.modal-dialog').draggable({ handle: ".modal-header" });
+
+    $("#imgShowHideSearchOptions").click(function () {
+        $("#searchOptions").toggle();
+    });
+
+    $('#CountZap').change(
+        function () {
+            $('#_pageSize').val($('#CountZap').val());
+            $('input[type=submit]').click();
+        }
+    );
+
+    $(`.ClientList`).change(function () {
+        var checkedElements = $('input.ClientList:checked');
+        if (checkedElements != null && checkedElements.length > 0) {
+            // alert(`not empty`);
+            $(`.ClientSearch_ShowCases`).show('slow');
+        }
+        else {
+           // alert(`empty`);
+            $(`.ClientSearch_ShowCases`).hide('slow');
+        }
+    });
+
+
+    $(`.ClientSearch_ShowCases`).click(function () {
+        $('#blackDivForFullScreen').show();
+        var checkedElements = $('input.ClientList:checked');
+        var resList = [];
+        checkedElements.each(function (i) {
+            resList.push({ Id: checkedElements.eq(i).attr('IdClient') })
+        });
+     //   console.log(resList);
+     //   alert(resList);
+
+        $.ajax({
+            type: `POST`,
+            url: `/Payments/ShowPlat`,
+            data: {
+                ClientList: resList
+            },
+            success: function (data) {
+                console.log(data);
+                $('#dialogContent').html(data);
+                $('#modDialog').modal('show');
+                $('#blackDivForFullScreen').hide();
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $(`#AllClientList`).click(function () {
+        $(`.ClientList`).not(":disabled").prop('checked', $(this).prop('checked')).change();
+
+    })
+
+</script>
