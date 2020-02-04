@@ -9,9 +9,9 @@ namespace PlatDiplom.Helpers
 {
     public class DocumentGetter
     {
-        public static Document GetDnDocument(string dnNo, string startUrl, string fullPathFile)
+        public static Document GetDnDocument(string startUrl, string fullPathFile)
         {
-            string Path = Properties.Resource.DiscLetter + @"\DNDocs\" + dnNo;
+            string Path = Properties.Resource.DiscLetter + @"\DNDocs\";
             var file = "";
             if (Directory.Exists(Path))
             {
@@ -29,7 +29,6 @@ namespace PlatDiplom.Helpers
                     }
 
                     string docName = System.IO.Path.GetFileName(file);
-
                     Document d = new Document()
                     {
                         Name = docName,

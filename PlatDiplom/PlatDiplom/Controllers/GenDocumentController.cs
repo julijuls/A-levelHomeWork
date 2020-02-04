@@ -14,10 +14,11 @@ namespace PlatDiplom.Controllers
     public class GenDocumentController : Controller
     {
         [HttpPost]
-        public ActionResult genDn(List<int> platList)
+        public ActionResult genDn(List<PlatType> platList)
         {
 
             nemo_freshEntities db = new nemo_freshEntities();
+
             var platListModel = new PlatForDNView
             {
                 Payments = new List<PaymentsRU>(),
@@ -25,19 +26,15 @@ namespace PlatDiplom.Controllers
             };
             foreach (var item in platList)
             {
-                var localInventionsList = new List<PaymentsRU>();
-                localInventionsList = db.PaymentsRU.Where(x => x.id_plat == item).ToList();
-                platListModel.Payments.AddRange(localInventionsList);
+                var localplatList = new List<PaymentsRU>();
+                localplatList = db.PaymentsRU.Where(x => x.id_plat == item.Id).ToList();
+                platListModel.Payments.AddRange(localplatList);
 
             }
             platListModel.Payments = platListModel.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
             platListModel.SelectedSum = platListModel.Payments.Sum(x => x.sum).ToString();
 
 
-            if (platListModel == null)
-            {
-                return Json(new JsonResponseModel("Error", "No dn"), JsonRequestBehavior.AllowGet);
-            }
 
             TableContent t1 = new TableContent("OurActionsTable");
             int i_servises = 1;
@@ -60,7 +57,6 @@ namespace PlatDiplom.Controllers
             );
 
             var newNameFolder = Properties.Resource.DiscLetter + @"\DNDocs\";
-            // var newNameFolder = @"C:\DNDocs\Plat\";
             var newNameDoc = "PatentRegistry.docx";
 
             if (!Directory.Exists(newNameFolder))
@@ -90,13 +86,12 @@ namespace PlatDiplom.Controllers
                 outputDoc.FillContent(valuesToFill);
                 outputDoc.SaveChanges();
             }
-            // var doc = DocumentsGetter.GetDnDocument(dn.No, Url.Content("~"), fullPathFile);
+          
 
             db.SaveChanges();
 
-            var doc = DocumentGetter.GetDnDocument("8888", Url.Content("~"), fullPathFile);
+            var doc = DocumentGetter.GetDnDocument(Url.Content("~"), fullPathFile);
             return Json(new JsonResponseModel("Ok", "") { Doc = doc }, JsonRequestBehavior.AllowGet);
-            //return "OK";
         }
 
     }

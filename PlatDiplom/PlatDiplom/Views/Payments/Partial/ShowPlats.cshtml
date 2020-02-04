@@ -21,20 +21,20 @@
                 </thead>
                 <tbody>
 
-                
-                        @{var i = 1;
-                            foreach (var item in Model.Payments)
-                            {
-                                
-                                <tr id="@Html.DisplayFor(model => item.id_plat)" class="id_plat">
-                                    <td >@i	</td>
-                                    <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
-                                    <td>	@Html.DisplayFor(model => item.sum)</td>
-                                </tr>
-                                i =i+ 1;
-                            }
+
+                    @{var i = 1;
+                        foreach (var item in Model.Payments)
+                        {
+
+                            <tr id="@Html.DisplayFor(model => item.id_plat)" class="id_plat">
+                                <td>@i	</td>
+                                <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
+                                <td>	@Html.DisplayFor(model => item.sum)</td>
+                            </tr>
+                            i = i + 1;
                         }
-                    </tbody>
+                    }
+                </tbody>
                 <tfoot>
                     <tr>
                         <td></td>
@@ -45,7 +45,7 @@
                 </tfoot>
             </table>
             <input type="button" class="btn btn-success" value="GenDN" id="GenDN">
-            @Html.ActionLink("GenDN", "genDn", "GenDocument", null, new { platList = Model.Payments })
+            <a href="" id="LinkDoc"></a>
         }
 
 
@@ -54,23 +54,11 @@
 
 <script>
     $(`#GenDN`).click(function () {
-
-      $('table td').each(function(key){
-	    console.log(key);
-	    var id2 = $(this).attr('id'); 
-      });
-
-
         var checkedElements = $('#PartialTable tr.id_plat');
-        // alert(checkedElements);
-       
         var resList = [];
         checkedElements.each(function (i) {
-            resList.push({ Id: checkedElements.eq(i).attr('id') })
+            resList.push({ Id:checkedElements.eq(i).attr('id') })
         });
-      console.log(resList);
-        alert(resList);
-
         $.ajax({
             type: `POST`,
             url: `/GenDocument/GenDN`,
@@ -78,8 +66,15 @@
                 platList: resList 
             },
             success: function (data) {
-              
-                alert("Сделаль!");
+                 //  console.log(data);
+                 //  alert("Сделаль!");
+             
+                if (data.Result == "Ok") {
+
+                    $("#LinkDoc").text(data.Doc.Name);
+                    $("a[href]").attr("href",data.Doc.Link)
+                  
+                }
 
             },
             error: function (err) {
