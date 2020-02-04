@@ -28,12 +28,12 @@
                     <th>
                     @Html.CheckBox("AllClientList", false, new { @class = "AllClientList", @title = "Checked all" })
                     </th>
-                    <th class="col-sm-4 col-md-4">Назначение платежа</th>
-                    <th>Сумма</th>
-                    <th>Дело</th>
+                    <th class="col-sm-4 col-md-4"> @Html.ActionLink("Назначение платежа", "Index", new { sortOrder = ViewBag.PurSortParm })</th>
+                    <th>@Html.ActionLink("Sum", "Index", new { sortOrder = ViewBag.SumSortParm })</th>
+                    <th>Case</th>
                     <th>Кто заказал</th>
-                    <th>Paid</th>
-                    <th>File</th>
+                    <th>@Html.ActionLink("Paid", "Index", new { sortOrder = ViewBag.PaidSortParm })</th>
+                    <th>@Html.ActionLink("File", "Index", new { sortOrder = ViewBag.FileSortParm })</th>
                     <th></th>
                 </tr>
             </thead>
@@ -45,7 +45,6 @@
                             @Html.CheckBox("ClientList", false, new { @class = "ClientList", @IdClient = item.id_plat.ToString() })
 
                         </td>
-
                         <td>
                             @Html.DisplayFor(modelItem => item.PurOfPayment)
                         </td>
@@ -93,6 +92,7 @@
            new
                {
               page = x,
+              sortOrder = ViewBag.CurrentSort,
               SelectedCountry = Request.QueryString["SelectedCountry"],
               SelectedStatus = Request.QueryString["SelectedStatus"]
 

@@ -12,5 +12,6 @@ namespace PlatDiplom.Models.PlatModel
         public int? SelectedStatus { get; set; }
         public IEnumerable<SelectListItem> CountriesList { get; set; }
         public IEnumerable<SelectListItem> StatusList { get; set; }
+        public string sortOrder { get; set; }
     }
 }

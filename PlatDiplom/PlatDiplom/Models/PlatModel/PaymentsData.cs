@@ -18,7 +18,7 @@ namespace PlatDiplom.Models
         public Nullable<double> sum { get; set; }
         public string OurCase { get; set; }
         public string TaxNum { get; set; }
-         public Nullable<int> region_id { get; set; }
+        public Nullable<int> region_id { get; set; }
         public Nullable<int> currency_id { get; set; }
         public string currency { get; set; }
         public Nullable<int> User_id { get; set; }
@@ -39,7 +39,7 @@ namespace PlatDiplom.Models
         public virtual Countries Countries { get; set; }
         public virtual Currencies Currencies { get; set; }
         public virtual Users Users { get; set; }
-        public List<PaymentsData> GetPaymentsList(int? country_id,int? status_id)
+        public List<PaymentsData> GetPaymentsList(int? country_id, int? status_id, string sortOrder)
         {
 
             List<PaymentsData> PaymentsList = new List<PaymentsData>();
@@ -55,23 +55,53 @@ namespace PlatDiplom.Models
                                             TaxNum = x.TaxNum,
                                             region_id = x.region_id,
                                             currency_id = x.currency_id,
-                                            currency=x.Currencies.currencycode,
+                                            currency = x.Currencies.currencycode,
                                             User = x.Users.Username,
                                             deadline = x.deadline,
                                             Paid = x.Paid,
                                             File = x.File,
                                             currency2_id = x.currency2_id,
-                                            currency2=x.Currencies.currencycode,
+                                            currency2 = x.Currencies.currencycode,
                                             Bank_id = x.Bank_id,
                                             DNid = x.DNid
                                         }).ToList();
             if (status_id == 1)
             {
                 PaymentsList = PaymentsList.Where(x => x.Paid != null).ToList();
-            }else if(status_id == 0)
+            }
+            else if (status_id == 0)
             {
                 PaymentsList = PaymentsList.Where(x => x.Paid == null).ToList();
             }
+
+            switch (sortOrder)
+            {
+                case "PurOfPayment_desc":
+                    PaymentsList = PaymentsList.OrderByDescending(s => s.PurOfPayment).ToList();
+                    break;
+                case "Sum":
+                    PaymentsList = PaymentsList.OrderBy(s => s.sum).ToList();
+                    break;
+                case "Sum_desc":
+                    PaymentsList = PaymentsList.OrderByDescending(s => s.sum).ToList();
+                    break;
+                case "Paid":
+                    PaymentsList = PaymentsList.OrderBy(s => s.Paid).ToList();
+                    break;
+                case "Paid_desc":
+                    PaymentsList = PaymentsList.OrderByDescending(s => s.Paid).ToList();
+                    break;
+                case "File":
+                    PaymentsList = PaymentsList.OrderBy(s => s.File).ToList();
+                    break;
+                case "File_desc":
+                    PaymentsList = PaymentsList.OrderByDescending(s => s.File).ToList();
+                    break;
+                default:
+                    PaymentsList = PaymentsList.OrderByDescending(s => s.id_plat).ToList();
+                    break;
+            }
+
 
             return PaymentsList.ToList();
 

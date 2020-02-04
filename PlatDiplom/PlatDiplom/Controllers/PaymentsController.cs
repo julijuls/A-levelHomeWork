@@ -21,22 +21,24 @@ namespace PlatDiplom.Controllers
         public ActionResult Index(Filterplat filter, int page = 1)
         {
             int pageSize = 15;
-            PageInfo pageInfo;
-
-            ViewBag.Countries = new PlatManager().GetCountries(filter.SelectedCountry);
-            ViewBag.Status = new PlatManager().GetStatus(filter.SelectedStatus);
-
+             ViewBag.CurrentSort = filter.sortOrder;
+            ViewBag.PurSortParm = String.IsNullOrEmpty(filter.sortOrder) ? "PurOfPayment_desc" : "";
+            ViewBag.SumSortParm = filter.sortOrder == "Sum" ? "Sum_desc" : "Sum";
+            ViewBag.PaidSortParm = filter.sortOrder == "Paid" ? "Paid_desc" : "Paid";
+            ViewBag.FileSortParm = filter.sortOrder == "File" ? "File_desc" : "File";
+     
             Filterplat filterview = new Filterplat
             {
                 SelectedCountry = filter.SelectedCountry,
                 SelectedStatus = filter.SelectedStatus,
                 CountriesList = new PlatManager().GetCountries(filter.SelectedCountry),
-                StatusList = new PlatManager().GetStatus(filter.SelectedStatus)
+                StatusList = new PlatManager().GetStatus(filter.SelectedStatus),
+                sortOrder=filter.sortOrder
             };
 
-            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter.SelectedCountry, filter.SelectedStatus).ToList();
+            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter.SelectedCountry, filter.SelectedStatus,filter.sortOrder).ToList();
 
-            pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);
 
             PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo, FilterPlat= filterview };
