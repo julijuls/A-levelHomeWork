@@ -29,14 +29,14 @@ namespace PlatDiplom.Controllers
      
             Filterplat filterview = new Filterplat
             {
-                SelectedCountry = filter.SelectedCountry,
-                SelectedStatus = filter.SelectedStatus,
-                CountriesList = new PlatManager().GetCountries(filter.SelectedCountry),
-                StatusList = new PlatManager().GetStatus(filter.SelectedStatus),
+                Country = filter.Country,
+                Status = filter.Status,
+                CountriesList = new PlatManager().GetCountries(filter.Country),
+                StatusList = new PlatManager().GetStatus(filter.Status),
                 sortOrder=filter.sortOrder
             };
 
-            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter.SelectedCountry, filter.SelectedStatus,filter.sortOrder).ToList();
+            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter).ToList();
 
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);

@@ -8,8 +8,8 @@ namespace PlatDiplom.Models.PlatModel
 {
     public class Filterplat
     {
-        public int? SelectedCountry { get; set; }
-        public int? SelectedStatus { get; set; }
+        public int? Country { get; set; }
+        public int? Status { get; set; }
         public IEnumerable<SelectListItem> CountriesList { get; set; }
         public IEnumerable<SelectListItem> StatusList { get; set; }
         public string sortOrder { get; set; }

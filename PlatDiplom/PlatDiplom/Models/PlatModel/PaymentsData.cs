@@ -39,12 +39,12 @@ namespace PlatDiplom.Models
         public virtual Countries Countries { get; set; }
         public virtual Currencies Currencies { get; set; }
         public virtual Users Users { get; set; }
-        public List<PaymentsData> GetPaymentsList(int? country_id, int? status_id, string sortOrder)
+        public List<PaymentsData> GetPaymentsList(Filterplat filter)
         {
 
             List<PaymentsData> PaymentsList = new List<PaymentsData>();
 
-            PaymentsList = db.PaymentsRU.Where(x => x.region_id == country_id)
+            PaymentsList = db.PaymentsRU.Where(x => x.region_id == filter.Country)
                                         .Select(x => new PaymentsData()
                                         {
                                             id_plat = x.id_plat,
@@ -65,16 +65,16 @@ namespace PlatDiplom.Models
                                             Bank_id = x.Bank_id,
                                             DNid = x.DNid
                                         }).ToList();
-            if (status_id == 1)
+            if (filter.Status == 1)
             {
                 PaymentsList = PaymentsList.Where(x => x.Paid != null).ToList();
             }
-            else if (status_id == 0)
+            else if (filter.Status == 0)
             {
                 PaymentsList = PaymentsList.Where(x => x.Paid == null).ToList();
             }
 
-            switch (sortOrder)
+            switch (filter.sortOrder)
             {
                 case "PurOfPayment_desc":
                     PaymentsList = PaymentsList.OrderByDescending(s => s.PurOfPayment).ToList();
