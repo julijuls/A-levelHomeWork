@@ -10,14 +10,21 @@ namespace PlatDiplom.Services
     public class PlatManager : IPlatManeger
     {
         private nemo_freshEntities db = new nemo_freshEntities();
-        public  SelectList GetCountries(int? id)
+        public SelectList GetCountries(int? id = 175)
         {
-            List<Countries> CountriesLst = db.Countries.Where(x => x.id_country == 175 || x.id_country == 144 || x.id_country == 18 || x.id_country == 178).ToList();
+            List<Countries> CountriesLst = db.Countries.Where(x =>
+               x.id_country == 175
+            || x.id_country == 144
+            || x.id_country == 18
+            || x.id_country == 178
+            || x.id_country == 19
+            || x.id_country == 65
+            || x.id_country == 216).ToList();
             SelectList countries = new SelectList(CountriesLst, "id_country", "Country_Rus", id);
             return countries;
         }
 
-        public SelectList GetStatus(int? id)
+        public SelectList GetStatus(int? id = 0)
         {
             List<SelectListItem> StatusLst = new List<SelectListItem>
             {

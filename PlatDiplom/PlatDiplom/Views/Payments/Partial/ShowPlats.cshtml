@@ -13,9 +13,9 @@
             <table class="table table-bordered" id="PartialTable">
                 <thead>
                     <tr style="position:sticky; top:80px;">
-                        <th>id</th>
+                        <th>№</th>
                         <th>Payment</th>
-                        <th>sum</th>
+                        <th>Sum</th>
 
                     </tr>
                 </thead>
@@ -28,8 +28,8 @@
 
                             <tr id="@Html.DisplayFor(model => item.id_plat)" class="id_plat">
                                 <td>@i	</td>
-                                <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
-                                <td>	@Html.DisplayFor(model => item.sum)</td>
+                                <td class="col-md-9 col-sm-9 " >	@Html.DisplayFor(model => item.PurOfPayment)</td>
+                                <td class="">	@Html.DisplayFor(model => item.sum)</td>
                             </tr>
                             i = i + 1;
                         }
@@ -39,7 +39,9 @@
                     <tr>
                         <td></td>
                         <td>Сумма счета</td>
-                        <td class="PlatSum"><b>@Html.DisplayFor(model => model.SelectedSum)</b></td>
+                        <td class="PlatSum"><b>
+                            @Html.DisplayFor(model => model.SelectedSum)
+                            @Html.DisplayFor(model => model.SelectedCurrency)</b></td>
                     </tr>
 
                 </tfoot>

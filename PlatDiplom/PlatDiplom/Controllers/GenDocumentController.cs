@@ -86,7 +86,6 @@ namespace PlatDiplom.Controllers
                 outputDoc.FillContent(valuesToFill);
                 outputDoc.SaveChanges();
             }
-          
 
             db.SaveChanges();
 

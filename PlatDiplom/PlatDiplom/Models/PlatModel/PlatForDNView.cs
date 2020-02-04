@@ -9,5 +9,6 @@ namespace PlatDiplom.Models.PlatModel
     {
         public List<PaymentsRU> Payments {get; set;}
         public string SelectedSum { get; set; }
+        public string SelectedCurrency { get; set; }
     }
 }

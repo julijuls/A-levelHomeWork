@@ -17,28 +17,29 @@ namespace PlatDiplom.Controllers
     {
         private nemo_freshEntities db = new nemo_freshEntities();
 
-        public ActionResult Index(int? country_id = 175, int? Status = 0, int page = 1)
+  
+        public ActionResult Index(Filterplat filter, int page = 1)
         {
             int pageSize = 15;
             PageInfo pageInfo;
 
-            ViewBag.Countries = new PlatManager().GetCountries(country_id);
-            ViewBag.Status = new PlatManager().GetStatus(Status);
+            ViewBag.Countries = new PlatManager().GetCountries(filter.SelectedCountry);
+            ViewBag.Status = new PlatManager().GetStatus(filter.SelectedStatus);
 
-            //Filterplat filterview = new Filterplat
-            //                        { 
-            //                          SelectedCountry= filter.SelectedCountry,
-            //                          SelectedStatus=  filter.SelectedStatus,
-            //                          CountriesList=  new PlatManager().GetCountries(filter.SelectedCountry),
-            //                          StatusList=     new PlatManager().GetStatus(filter.SelectedStatus) 
-            //                        };
+            Filterplat filterview = new Filterplat
+            {
+                SelectedCountry = filter.SelectedCountry,
+                SelectedStatus = filter.SelectedStatus,
+                CountriesList = new PlatManager().GetCountries(filter.SelectedCountry),
+                StatusList = new PlatManager().GetStatus(filter.SelectedStatus)
+            };
 
-            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(country_id, Status).ToList();
+            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter.SelectedCountry, filter.SelectedStatus).ToList();
 
             pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);
 
-            PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo};
+            PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo, FilterPlat= filterview };
             return View(ivm);
 
 
@@ -51,7 +52,8 @@ namespace PlatDiplom.Controllers
             var platList = new PlatForDNView
             {
                 Payments = new List<PaymentsRU>(),
-                SelectedSum = null
+                SelectedSum = null,
+                SelectedCurrency=null
             };
             foreach (var item in ClientList)
             {
@@ -62,6 +64,7 @@ namespace PlatDiplom.Controllers
             }
             platList.Payments = platList.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
             platList.SelectedSum = platList.Payments.Sum(x => x.sum).ToString();
+            platList.SelectedCurrency = platList.Payments.Distinct().Select(x => x.Currencies.currencycode).FirstOrDefault();
             return PartialView("/Views/Payments/Partial/ShowPlats.cshtml", platList);
         }
 

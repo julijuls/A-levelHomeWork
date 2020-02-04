@@ -32,7 +32,7 @@ namespace PlatDiplom.Helpers
                     Document d = new Document()
                     {
                         Name = docName,
-                        Link = startUrl + "DNDocs/" + docName
+                        Link = startUrl + "dn/" + docName
                     };
 
                     return d;

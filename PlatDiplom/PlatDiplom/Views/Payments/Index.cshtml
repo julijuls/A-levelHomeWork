@@ -8,156 +8,146 @@
 
 @using (Html.BeginForm("Index", "Payments", FormMethod.Get))
 {
-    <div class="form-group" style="float:left">
-        @Html.DropDownList("country_id", ViewBag.Countries as SelectList, new { @id = "country_id", @class = "form-control" })
-        @*@Html.DropDownListFor(model=>model.FilterPlat.SelectedCountry, Model.FilterPlat.CountriesList,new { @id = "country_id", @class = "form-control" })*@
-    </div>
-    <div class="form-group" style="float:left">
-        @*@Html.DropDownListFor(model => model.FilterPlat.SelectedStatus, Model.FilterPlat.StatusList, new { @id = "status_id", @class = "form-control" })*@
-        @Html.DropDownList("Status", ViewBag.Status as SelectList, new { @id = "status_id", @class = "form-control" })
-    </div>
+    <div class="row">
+        <div class="form-group col-sm-2" style="float:left">
+            @Html.DropDownList("SelectedCountry", Model.FilterPlat.CountriesList as SelectList, new { @id = "SelectedCountry", @class = "form-control m-3 p-3" })
+            @*@Html.DropDownListFor(model=>model.FilterPlat.SelectedCountry, Model.FilterPlat.CountriesList,new { @id = "country_id", @class = "form-control" })*@
+        </div>
+        <div class="form-group col-sm-2" style="float:left">
+            @*@Html.DropDownListFor(model => model.FilterPlat.SelectedStatus, Model.FilterPlat.StatusList, new { @id = "status_id", @class = "form-control" })*@
+            @Html.DropDownList("SelectedStatus", Model.FilterPlat.StatusList as SelectList, new { @id = "SelectedStatus", @class = "form-control  m-3 p-3" })
+        </div>
 
-    <input type="submit" class="btn btn-success">
-}
-
-<table class="table table-bordered table-hover col-sm-12 col-md-12 col-lg-12">
-    <thead>
-        <tr>
-            <th >
-                
-                @Html.CheckBox("AllClientList", false, new { @class = "AllClientList", @title = "Checked all" })
-            </th>
-            <th class="col-sm-4 col-md-4">Назначение платежа</th>
-
-            <th>Сумма</th>
-            <th>Дело</th>
-
-            <th>Кто заказал</th>
-            <th>Paid</th>
-            <th>File</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.PaymentsList)//PaymentsList)
-        {
-            <tr>
-                <td>
-                    @Html.CheckBox("ClientList", false, new { @class = "ClientList", @IdClient = item.id_plat.ToString() })
-
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.PurOfPayment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OurCase)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Paid)
-                </td>
-                <td>
-                     @*<input type="button"
-                           fileExtension="@item.File"
-                           filePath="@(item.File)"
-                           class="btn btn-info viewFile"
-                           value="@item.File" />*@
-                    @Html.DisplayFor(modelItem => item.File)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_plat })
-
-                </td>
-            </tr>
+        <input type="submit" class="btn btn-success" value="send">
+        </div>
         }
-    </tbody>
-</table>
-<div>
 
-    <button type="button" class="btn btn-primary ClientSearch_ShowCases">Show items</button>
+        <table class="table table-bordered table-hover col-sm-12 col-md-12 col-lg-12">
+            <thead>
+                <tr>
+                    <th>
+                    @Html.CheckBox("AllClientList", false, new { @class = "AllClientList", @title = "Checked all" })
+                    </th>
+                    <th class="col-sm-4 col-md-4">Назначение платежа</th>
+                    <th>Сумма</th>
+                    <th>Дело</th>
+                    <th>Кто заказал</th>
+                    <th>Paid</th>
+                    <th>File</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PaymentsList)//PaymentsList)
+                {
+                    <tr>
+                        <td>
+                            @Html.CheckBox("ClientList", false, new { @class = "ClientList", @IdClient = item.id_plat.ToString() })
 
-</div>
-<div id="modDialog" class="modal fade">
-    <div id="dialogContent" class="modal-dialog"></div>
-</div>
-<div class="btn-group">
-    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index",
-   new
-       {
-      page = x,
-      country_id = Request.QueryString["country_id"],
-      Status = Request.QueryString["Status"]
+                        </td>
 
-    }))
-</div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurOfPayment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.sum)
+                            @Html.DisplayFor(modelItem => item.currency)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OurCase)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User)
+                        </td>
 
-<script>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Paid)
+                        </td>
+                        <td>
+                            @*<input type="button"
+                                fileExtension="@item.File"
+                                filePath="@(item.File)"
+                                class="btn btn-info viewFile"
+                                value="@item.File" />*@
+                            @Html.DisplayFor(modelItem => item.File)
+                        </td>
 
-    $('.modal-dialog').draggable({ handle: ".modal-header" });
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id_plat })
 
-    $("#imgShowHideSearchOptions").click(function () {
-        $("#searchOptions").toggle();
-    });
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div>
 
-    $('#CountZap').change(
-        function () {
-            $('#_pageSize').val($('#CountZap').val());
-            $('input[type=submit]').click();
-        }
-    );
+            <button type="button" class="btn btn-primary ClientSearch_ShowCases">Show items</button>
 
-    $(`.ClientList`).change(function () {
-        var checkedElements = $('input.ClientList:checked');
-        if (checkedElements != null && checkedElements.length > 0) {
-            // alert(`not empty`);
-            $(`.ClientSearch_ShowCases`).show('slow');
-        }
-        else {
-           // alert(`empty`);
-            $(`.ClientSearch_ShowCases`).hide('slow');
-        }
-    });
+        </div>
+        <div id="modDialog" class="modal fade">
+            <div id="dialogContent" class="modal-dialog"></div>
+        </div>
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index",
+           new
+               {
+              page = x,
+              SelectedCountry = Request.QueryString["SelectedCountry"],
+              SelectedStatus = Request.QueryString["SelectedStatus"]
+
+            }))
+        </div>
+
+        <script>
+
+            $('.modal-dialog').draggable({ handle: ".modal-header" });
 
 
-    $(`.ClientSearch_ShowCases`).click(function () {
-        $('#blackDivForFullScreen').show();
-        var checkedElements = $('input.ClientList:checked');
-        var resList = [];
-        checkedElements.each(function (i) {
-            resList.push({ Id: checkedElements.eq(i).attr('IdClient') })
-        });
-     //   console.log(resList);
-     //   alert(resList);
+            $(`.ClientList`).change(function () {
+                var checkedElements = $('input.ClientList:checked');
+                if (checkedElements != null && checkedElements.length > 0) {
+                    // alert(`not empty`);
+                    $(`.ClientSearch_ShowCases`).show('slow');
+                }
+                else {
+                    // alert(`empty`);
+                    $(`.ClientSearch_ShowCases`).hide('slow');
+                }
+            });
 
-        $.ajax({
-            type: `POST`,
-            url: `/Payments/ShowPlat`,
-            data: {
-                ClientList: resList
-            },
-            success: function (data) {
-                console.log(data);
-                $('#dialogContent').html(data);
-                $('#modDialog').modal('show');
-                $('#blackDivForFullScreen').hide();
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
-    });
 
-    $(`#AllClientList`).click(function () {
-        $(`.ClientList`).not(":disabled").prop('checked', $(this).prop('checked')).change();
+            $(`.ClientSearch_ShowCases`).click(function () {
+                $('#blackDivForFullScreen').show();
+                var checkedElements = $('input.ClientList:checked');
+                var resList = [];
+                checkedElements.each(function (i) {
+                    resList.push({ Id: checkedElements.eq(i).attr('IdClient') })
+                });
+                //   console.log(resList);
+                //   alert(resList);
 
-    })
+                $.ajax({
+                    type: `POST`,
+                    url: `/Payments/ShowPlat`,
+                    data: {
+                        ClientList: resList
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        $('#dialogContent').html(data);
+                        $('#modDialog').modal('show');
+                        $('#blackDivForFullScreen').hide();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
 
-</script>
+            $(`#AllClientList`).click(function () {
+                $(`.ClientList`).not(":disabled").prop('checked', $(this).prop('checked')).change();
+
+            })
+
+        </script>

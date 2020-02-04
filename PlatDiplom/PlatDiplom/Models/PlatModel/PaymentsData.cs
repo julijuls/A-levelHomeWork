@@ -20,6 +20,7 @@ namespace PlatDiplom.Models
         public string TaxNum { get; set; }
          public Nullable<int> region_id { get; set; }
         public Nullable<int> currency_id { get; set; }
+        public string currency { get; set; }
         public Nullable<int> User_id { get; set; }
 
         public string User { get; set; }
@@ -29,6 +30,7 @@ namespace PlatDiplom.Models
         public Nullable<System.DateTime> Paid { get; set; }
         public string File { get; set; }
         public Nullable<int> currency2_id { get; set; }
+        public string currency2 { get; set; }
 
         public Nullable<int> Bank_id { get; set; }
         public Nullable<int> DNid { get; set; }
@@ -53,11 +55,13 @@ namespace PlatDiplom.Models
                                             TaxNum = x.TaxNum,
                                             region_id = x.region_id,
                                             currency_id = x.currency_id,
+                                            currency=x.Currencies.currencycode,
                                             User = x.Users.Username,
                                             deadline = x.deadline,
                                             Paid = x.Paid,
                                             File = x.File,
                                             currency2_id = x.currency2_id,
+                                            currency2=x.Currencies.currencycode,
                                             Bank_id = x.Bank_id,
                                             DNid = x.DNid
                                         }).ToList();
