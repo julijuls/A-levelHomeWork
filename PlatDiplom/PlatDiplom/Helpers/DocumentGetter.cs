@@ -11,7 +11,7 @@ namespace PlatDiplom.Helpers
     {
         public static Document GetDnDocument(string dnNo, string startUrl, string fullPathFile)
         {
-            string Path = Properties.Resources.DiscLetter + @"\DNDocs\" + dnNo;
+            string Path = Properties.Resource.DiscLetter + @"\DNDocs\" + dnNo;
             var file = "";
             if (Directory.Exists(Path))
             {

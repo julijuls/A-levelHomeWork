@@ -10,27 +10,34 @@
 
         @if (Model.Payments.Count() != 0)
         {
-            <table class="table table-bordered" id="InventionTable">
+            <table class="table table-bordered" id="PartialTable">
                 <thead>
                     <tr style="position:sticky; top:80px;">
-
+                        <th>id</th>
                         <th>Payment</th>
                         <th>sum</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @{foreach (var item in Model.Payments)
-                        {
-                            <tr>
-                                <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
-                                <td>	@Html.DisplayFor(model => item.sum)</td>
-                            </tr>
+
+                
+                        @{var i = 1;
+                            foreach (var item in Model.Payments)
+                            {
+                                
+                                <tr id="@Html.DisplayFor(model => item.id_plat)" class="id_plat">
+                                    <td >@i	</td>
+                                    <td>	@Html.DisplayFor(model => item.PurOfPayment)</td>
+                                    <td>	@Html.DisplayFor(model => item.sum)</td>
+                                </tr>
+                                i =i+ 1;
+                            }
                         }
-                    }
-                </tbody>
+                    </tbody>
                 <tfoot>
                     <tr>
+                        <td></td>
                         <td>Сумма счета</td>
                         <td class="PlatSum"><b>@Html.DisplayFor(model => model.SelectedSum)</b></td>
                     </tr>
@@ -38,7 +45,6 @@
                 </tfoot>
             </table>
             <input type="button" class="btn btn-success" value="GenDN" id="GenDN">
-
             @Html.ActionLink("GenDN", "genDn", "GenDocument", null, new { platList = Model.Payments })
         }
 
@@ -47,16 +53,29 @@
 </div>
 
 <script>
-     $(`#GenDN`).click(function () {
+    $(`#GenDN`).click(function () {
 
-     //   console.log(resList);
-     //   alert(resList);
+      $('table td').each(function(key){
+	    console.log(key);
+	    var id2 = $(this).attr('id'); 
+      });
+
+
+        var checkedElements = $('#PartialTable tr.id_plat');
+        // alert(checkedElements);
+       
+        var resList = [];
+        checkedElements.each(function (i) {
+            resList.push({ Id: checkedElements.eq(i).attr('id') })
+        });
+      console.log(resList);
+        alert(resList);
 
         $.ajax({
             type: `POST`,
             url: `/GenDocument/GenDN`,
             data: {
-                platList: JsonConvert.SerializeObject(@Model) 
+                platList: resList 
             },
             success: function (data) {
               

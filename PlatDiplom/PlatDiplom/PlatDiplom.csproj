@@ -251,8 +251,14 @@
     <Compile Include="Models\PlatModel\Users.cs">
       <DependentUpon>Payments.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UploadFiles\UploadFiles.cs" />
+    <Compile Include="Models\VirtualEntities\FileOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Abstract\IPlatManeger.cs" />
     <Compile Include="Services\PlatManager.cs" />
     <Compile Include="Startup.cs" />
@@ -359,7 +365,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

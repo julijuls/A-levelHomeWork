@@ -1,6 +1,7 @@
 
 namespace PlatDiplom.Models.PlatModel
 {
+    using PlatDiplom.Models.VirtualEntities;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

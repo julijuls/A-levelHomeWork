@@ -37,6 +37,7 @@ namespace PlatDiplom.Controllers
 
             pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);
+
             PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo};
             return View(ivm);
 
@@ -62,8 +63,6 @@ namespace PlatDiplom.Controllers
             platList.Payments = platList.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
             platList.SelectedSum = platList.Payments.Sum(x => x.sum).ToString();
             return PartialView("/Views/Payments/Partial/ShowPlats.cshtml", platList);
-
-
         }
 
 

@@ -23,11 +23,11 @@
 <table class="table table-bordered table-hover col-sm-12 col-md-12 col-lg-12">
     <thead>
         <tr>
-            <th>
+            <th >
                 
                 @Html.CheckBox("AllClientList", false, new { @class = "AllClientList", @title = "Checked all" })
             </th>
-            <th>Назначение платежа</th>
+            <th class="col-sm-4 col-md-4">Назначение платежа</th>
 
             <th>Сумма</th>
             <th>Дело</th>
@@ -57,13 +57,18 @@
                     @Html.DisplayFor(modelItem => item.OurCase)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Users.Username)
+                    @Html.DisplayFor(modelItem => item.User)
                 </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Paid)
                 </td>
                 <td>
+                     @*<input type="button"
+                           fileExtension="@item.File"
+                           filePath="@(item.File)"
+                           class="btn btn-info viewFile"
+                           value="@item.File" />*@
                     @Html.DisplayFor(modelItem => item.File)
                 </td>
 

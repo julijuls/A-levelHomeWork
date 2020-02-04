@@ -119,6 +119,6 @@
   </resheader>
   <data name="DiscLetter" xml:space="preserve">
     <value>C:</value>
-    <comment>Letter of disc where files store (C: for local debug, I: for publish)</comment>
+    <comment>C:-0,I:-1/ololol</comment>
   </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using PlatDiplom.Models.PlatModel;
+using PlatDiplom.Models.VirtualEntities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,7 @@ namespace PlatDiplom.Models
         public Nullable<int> currency_id { get; set; }
         public Nullable<int> User_id { get; set; }
 
+        public string User { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> deadline { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
@@ -51,7 +53,7 @@ namespace PlatDiplom.Models
                                             TaxNum = x.TaxNum,
                                             region_id = x.region_id,
                                             currency_id = x.currency_id,
-                                            User_id = x.User_id,
+                                            User = x.Users.Username,
                                             deadline = x.deadline,
                                             Paid = x.Paid,
                                             File = x.File,

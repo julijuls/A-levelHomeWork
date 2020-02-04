@@ -14,19 +14,34 @@ namespace PlatDiplom.Controllers
     public class GenDocumentController : Controller
     {
         [HttpPost]
-        public ActionResult genDn(PlatForDNView platList)
+        public ActionResult genDn(List<int> platList)
         {
 
             nemo_freshEntities db = new nemo_freshEntities();
+            var platListModel = new PlatForDNView
+            {
+                Payments = new List<PaymentsRU>(),
+                SelectedSum = null
+            };
+            foreach (var item in platList)
+            {
+                var localInventionsList = new List<PaymentsRU>();
+                localInventionsList = db.PaymentsRU.Where(x => x.id_plat == item).ToList();
+                platListModel.Payments.AddRange(localInventionsList);
 
-            if (platList == null)
+            }
+            platListModel.Payments = platListModel.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
+            platListModel.SelectedSum = platListModel.Payments.Sum(x => x.sum).ToString();
+
+
+            if (platListModel == null)
             {
                 return Json(new JsonResponseModel("Error", "No dn"), JsonRequestBehavior.AllowGet);
             }
 
             TableContent t1 = new TableContent("OurActionsTable");
             int i_servises = 1;
-            foreach (var a in platList.Payments)
+            foreach (var a in platListModel.Payments)
             {
                 if (a.PurOfPayment != null || a.PurOfPayment.Length != 0)
                 {
@@ -40,11 +55,11 @@ namespace PlatDiplom.Controllers
                 }
             }
 
-            var valuesToFill = new Content(t1, new FieldContent("Total", String.Format("{0:f2}", platList.SelectedSum))
+            var valuesToFill = new Content(t1, new FieldContent("Total", String.Format("{0:f2}", platListModel.SelectedSum))
 
             );
 
-            var newNameFolder = Properties.Resources.DiscLetter + @"\DNDocs\";
+            var newNameFolder = Properties.Resource.DiscLetter + @"\DNDocs\";
             // var newNameFolder = @"C:\DNDocs\Plat\";
             var newNameDoc = "PatentRegistry.docx";
 
