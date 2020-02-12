@@ -7,9 +7,7 @@ namespace PlatDiplom.Models.PlatModel
 {
     public class PlatType
     {
-    
-            public int Id { get; set; }
-         
-       
+        public int Id { get; set; }
+
     }
 }

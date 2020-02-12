@@ -12,5 +12,7 @@ namespace PlatDiplom.Services
     {
         SelectList GetCountries(int? id);
         SelectList GetStatus(int? id);
+        SelectList GetCurrencies(int? id);
+        SelectList GetUsers(int? id);
     }
 }

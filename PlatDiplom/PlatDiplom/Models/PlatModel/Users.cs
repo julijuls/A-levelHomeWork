@@ -98,5 +98,7 @@ namespace PlatDiplom.Models.PlatModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentsRU> PaymentsRU { get; set; }
         public virtual UserGroups UserGroups { get; set; }
+
+
     }
 }

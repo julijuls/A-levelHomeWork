@@ -9,9 +9,12 @@ namespace PlatDiplom.Models.PlatModel
     public partial class PaymentsRU
     {
         public int id_plat { get; set; }
+        [Display(Name = "Purpose of payment")]
         public string PurOfPayment { get; set; }
         public string applnumber { get; set; }
+        [Display(Name = "Sum")]
         public Nullable<double> sum { get; set; }
+        [Display(Name = "Case")]
         public string OurCase { get; set; }
         public string TaxNum { get; set; }
         public string Comment { get; set; }
@@ -21,9 +24,15 @@ namespace PlatDiplom.Models.PlatModel
         public Nullable<int> User_id { get; set; }
         public byte[] ts { get; set; }
         public Nullable<int> old_plat_num { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Deadline")]
         public Nullable<System.DateTime> deadline { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Paid")]
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> Paid { get; set; }
         public string File { get; set; }
         public Nullable<int> currency2_id { get; set; }

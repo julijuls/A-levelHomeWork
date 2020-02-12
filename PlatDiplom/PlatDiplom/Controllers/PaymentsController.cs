@@ -13,20 +13,14 @@ using PlatDiplom.Services;
 
 namespace PlatDiplom.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private nemo_freshEntities db = new nemo_freshEntities();
-
-  
         public ActionResult Index(Filterplat filter, int page = 1)
         {
             int pageSize = 15;
-             ViewBag.CurrentSort = filter.sortOrder;
-            ViewBag.PurSortParm = String.IsNullOrEmpty(filter.sortOrder) ? "PurOfPayment_desc" : "";
-            ViewBag.SumSortParm = filter.sortOrder == "Sum" ? "Sum_desc" : "Sum";
-            ViewBag.PaidSortParm = filter.sortOrder == "Paid" ? "Paid_desc" : "Paid";
-            ViewBag.FileSortParm = filter.sortOrder == "File" ? "File_desc" : "File";
-     
+               
             Filterplat filterview = new Filterplat
             {
                 Country = filter.Country,
@@ -36,14 +30,13 @@ namespace PlatDiplom.Controllers
                 sortOrder=filter.sortOrder
             };
 
-            IEnumerable<PaymentsData> res = new PaymentsData().GetPaymentsList(filter).ToList();
+            IEnumerable<PaymentsData> res = new PlatManager().GetPaymentsList(filter).ToList();
 
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);
 
             PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo, FilterPlat= filterview };
             return View(ivm);
-
 
         }
 
@@ -69,20 +62,17 @@ namespace PlatDiplom.Controllers
             platList.SelectedCurrency = platList.Payments.Distinct().Select(x => x.Currencies.currencycode).FirstOrDefault();
             return PartialView("/Views/Payments/Partial/ShowPlats.cshtml", platList);
         }
-
-
         public ActionResult Create()
         {
-            ViewBag.Bank_id = new SelectList(db.About_banks, "Bank_ID", "Name");
-            ViewBag.region_id = new SelectList(db.Countries, "id_country", "Country_Eng");
-            ViewBag.currency_id = new SelectList(db.Currencies, "id_currency", "currencycode");
-            ViewBag.User_id = new SelectList(db.Users, "id_User", "Username");
+            ViewBag.region_id = new PlatManager().GetCountries();
+            ViewBag.currency_id = new PlatManager().GetCurrencies();
+            ViewBag.user_id = new PlatManager().GetUsers();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_plat,PurOfPayment,applnumber,sum,OurCase,TaxNum,Comment,region_id,Sum_for_reg,currency_id,User_id,ts,old_plat_num,deadline,Paid,File,currency2_id,Act,Pay,DateAct,SumAct,ASAP,DateStamp,SumbyAct,Buh_id,TaxCodeUA,OwnCountryCode,CountryinUA,Bank_id,TaxOrder,Writtenoff,Invoice,Remainder,DNid")] PaymentsRU paymentsRU)
+        public ActionResult Create(PaymentsRU paymentsRU)
         {
             if (ModelState.IsValid)
             {
@@ -91,10 +81,10 @@ namespace PlatDiplom.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Bank_id = new SelectList(db.About_banks, "Bank_ID", "Name", paymentsRU.Bank_id);
-            ViewBag.region_id = new SelectList(db.Countries, "id_country", "Country_Eng", paymentsRU.region_id);
-            ViewBag.currency_id = new SelectList(db.Currencies, "id_currency", "currencycode", paymentsRU.currency_id);
-            ViewBag.User_id = new SelectList(db.Users, "id_User", "Username", paymentsRU.User_id);
+            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
+            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
+           // ViewBag.User_id = new SelectList(db.Users, "id_User", "Username", paymentsRU.User_id);
+            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
             return View(paymentsRU);
         }
 
@@ -109,16 +99,15 @@ namespace PlatDiplom.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Bank_id = new SelectList(db.About_banks, "Bank_ID", "Name", paymentsRU.Bank_id);
-            ViewBag.region_id = new SelectList(db.Countries, "id_country", "Country_Eng", paymentsRU.region_id);
-            ViewBag.currency_id = new SelectList(db.Currencies, "id_currency", "currencycode", paymentsRU.currency_id);
-            ViewBag.User_id = new SelectList(db.Users, "id_User", "Username", paymentsRU.User_id);
+            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
+            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
+            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
             return View(paymentsRU);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_plat,PurOfPayment,applnumber,sum,OurCase,TaxNum,Comment,region_id,Sum_for_reg,currency_id,User_id,ts,old_plat_num,deadline,Paid,File,currency2_id,Act,Pay,DateAct,SumAct,ASAP,DateStamp,SumbyAct,Buh_id,TaxCodeUA,OwnCountryCode,CountryinUA,Bank_id,TaxOrder,Writtenoff,Invoice,Remainder,DNid")] PaymentsRU paymentsRU)
+        public ActionResult Edit(PaymentsRU paymentsRU)
         {
             if (ModelState.IsValid)
             {
@@ -126,10 +115,9 @@ namespace PlatDiplom.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Bank_id = new SelectList(db.About_banks, "Bank_ID", "Name", paymentsRU.Bank_id);
-            ViewBag.region_id = new SelectList(db.Countries, "id_country", "Country_Eng", paymentsRU.region_id);
-            ViewBag.currency_id = new SelectList(db.Currencies, "id_currency", "currencycode", paymentsRU.currency_id);
-            ViewBag.User_id = new SelectList(db.Users, "id_User", "Username", paymentsRU.User_id);
+            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
+            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
+            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
             return View(paymentsRU);
         }
 

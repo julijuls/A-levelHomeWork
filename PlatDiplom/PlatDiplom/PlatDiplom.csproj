@@ -264,6 +264,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-PlatDiplom-20200202010117.mdf" />
+    <Content Include="App_Data\aspnet-PlatDiplom-20200202010117_log.ldf">
+      <DependentUpon>aspnet-PlatDiplom-20200202010117.mdf</DependentUpon>
+    </Content>
+    <Content Include="bin\PlatDiplom.dll" />
+    <Content Include="bin\PlatDiplom.pdb" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -282,6 +288,13 @@
       <DependentUpon>Payments.edmx</DependentUpon>
       <LastGenOutput>Payments.cs</LastGenOutput>
     </Content>
+    <Content Include="obj\Debug\PlatDiplom.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\PlatDiplom.dll" />
+    <Content Include="obj\Debug\PlatDiplom.pdb" />
+    <Content Include="obj\Debug\TempPE\Models.PlatModel.Payments.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PlatModel.Payments.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Models.PlatModel.Payments.Designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\Properties.Resource.Designer.cs.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\PlatModel\Payments.edmx">
@@ -292,6 +305,14 @@
       <DependentUpon>Payments.edmx</DependentUpon>
     </Content>
     <Content Include="DnTemplates\RegistrPlat.docx" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PlatModel\Payments.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PlatModel\Payments.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\Models\PlatModel\Payments.ssdl" />
+    <Content Include="obj\Debug\PlatDiplom.csproj.CopyComplete" />
+    <Content Include="obj\Debug\PlatDiplom.csproj.GenerateResource.cache" />
+    <Content Include="obj\Debug\PlatDiplom.csprojAssemblyReference.cache" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -345,7 +366,7 @@
     <Content Include="Views\Payments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Models\Auth\" />
     <Folder Include="Views\GenDocument\" />
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +386,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="obj\Debug\PlatDiplom.Properties.Resource.resources" />
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
