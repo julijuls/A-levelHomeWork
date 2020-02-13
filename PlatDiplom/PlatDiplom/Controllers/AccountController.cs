@@ -52,12 +52,12 @@ namespace PlatDiplom.Controllers
             }
         }
 
-        //
-        // GET: /Account/Login
+       
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            // ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = "/Payments/Index";
             return View();
         }
 
@@ -163,7 +163,7 @@ namespace PlatDiplom.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Payments");
                 }
                 AddErrors(result);
             }
@@ -356,7 +356,7 @@ namespace PlatDiplom.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                return RedirectToAction("Index", "Payments");
             }
 
             if (ModelState.IsValid)

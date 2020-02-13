@@ -1,6 +1,6 @@
 ﻿using PlatDiplom.Models;
 using PlatDiplom.Models.PlatModel;
-using PlatDiplom.Models.VirtualEntities;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -36,9 +36,7 @@ namespace PlatDiplom.Services
                                             currency = x.Currencies.currencycode,
                                             User = x.Users.Username,
                                             Paid = x.Paid,
-                                            //FileObj =new FileOptions(x.File ?? ""),
                                             File=x.File,
-
                                             Bank_id = x.Bank_id
 
                                         }).ToList();

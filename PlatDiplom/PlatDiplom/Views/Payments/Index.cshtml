@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+    <script src="~/Scripts/OpenViewFileInFrameOnPage.js"></script>
 
 @using (Html.BeginForm("Index", "Payments", FormMethod.Get))
 {
@@ -61,14 +61,12 @@
                             @Html.DisplayFor(modelItem => item.Paid)
                         </td>
                         <td>
-                            @if (item.File != null) { 
-                            <button type='button' 
-                                    FilePath=" @item.File"
-                               
-                                    class="btn btn-default btn-sm btn-outline-secondary glyphicon glyphicon-file viewFile"
-                              ></button>
-                        
-                                }
+                            @if (item.File != null)
+                            {
+                                <button type='button'
+                                        FilePath=" @item.File"
+                                        class="btn btn-default btn-sm btn-outline-secondary glyphicon glyphicon-file viewFile"></button>
+                             }
                         </td>
 
                         <td>
@@ -103,15 +101,15 @@
 
             $('.modal-dialog').draggable({ handle: ".modal-header" });
             
-            $(`.viewFile`).click(function (e) {
-                var $this = $(this);
-                var LocalLink = $this.attr('filePath');
-                LocalLink = LocalLink.replace("C:", "http://127.0.0.1:8887");
-                LocalLink = LocalLink.replace("DNDocs", "");
-                LocalLink = LocalLink.replace("\\", "\/");
-                e.preventDefault(); 
-                window.location.href =LocalLink;
-            });
+            //$(`.viewFile`).click(function (e) {
+            //    var $this = $(this);
+            //    var LocalLink = $this.attr('filePath');
+            //    LocalLink = LocalLink.replace("C:", "http://127.0.0.1:8887");
+            //    LocalLink = LocalLink.replace("DNDocs", "");
+            //    LocalLink = LocalLink.replace("\\", "\/");
+            //    e.preventDefault(); 
+            //    window.location.href =LocalLink;
+            //});
 
             $(`.ClientList`).change(function () {
                 var checkedElements = $('input.ClientList:checked');

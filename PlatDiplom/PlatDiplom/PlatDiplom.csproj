@@ -325,6 +325,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\OpenViewFileInFrameOnPage.js" />
     <Content Include="Views\Payments\Partial\ShowPlats.cshtml" />
     <None Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Web.config" />

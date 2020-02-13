@@ -1,7 +1,6 @@
 
 namespace PlatDiplom.Models.PlatModel
 {
-    using PlatDiplom.Models.VirtualEntities;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -28,11 +27,9 @@ namespace PlatDiplom.Models.PlatModel
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Deadline")]
         public Nullable<System.DateTime> deadline { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy}", ApplyFormatInEditMode = true)]
+      
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Paid")]
-
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> Paid { get; set; }
         public string File { get; set; }
         public Nullable<int> currency2_id { get; set; }

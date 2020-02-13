@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace PlatDiplom.Models.VirtualEntities
+namespace PlatDiplom.Models.UploadFiles
 {
+
     public class FileOptions
     {/// <summary>
      /// данные из БД
