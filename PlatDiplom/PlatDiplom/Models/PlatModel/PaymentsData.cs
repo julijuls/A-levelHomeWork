@@ -27,6 +27,7 @@ namespace PlatDiplom.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<System.DateTime> Paid { get; set; }
         public string File { get; set; }
+        public FileOptions FileObj { get; set; }
         public Nullable<int> Bank_id { get; set; }
         public virtual About_banks About_banks { get; set; }
         public virtual Countries Countries { get; set; }

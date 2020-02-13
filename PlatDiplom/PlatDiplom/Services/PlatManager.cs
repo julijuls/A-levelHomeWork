@@ -1,7 +1,9 @@
 ﻿using PlatDiplom.Models;
 using PlatDiplom.Models.PlatModel;
+using PlatDiplom.Models.VirtualEntities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,7 +12,13 @@ namespace PlatDiplom.Services
 {
     public class PlatManager : IPlatManeger
     {
-        private nemo_freshEntities db = new nemo_freshEntities();
+
+        private nemo_freshEntities db;
+
+        public PlatManager(nemo_freshEntities db)
+        {
+            this.db = db;
+        }
         public List<PaymentsData> GetPaymentsList(Filterplat filter)
         {
 
@@ -28,7 +36,8 @@ namespace PlatDiplom.Services
                                             currency = x.Currencies.currencycode,
                                             User = x.Users.Username,
                                             Paid = x.Paid,
-                                            File = x.File,
+                                            //FileObj =new FileOptions(x.File ?? ""),
+                                            File=x.File,
 
                                             Bank_id = x.Bank_id
 
@@ -44,7 +53,51 @@ namespace PlatDiplom.Services
             return PaymentsList.ToList();
 
         }
-        public SelectList GetCountries(int? id = 175)
+        public void Create(PaymentsRU payment)
+        {
+            db.PaymentsRU.Add(payment);
+        }
+        public PaymentsRU GetPaymentByID(int id)
+        {
+            return db.PaymentsRU.Find(id);
+        }
+        public void EditPayments(PaymentsRU payment)
+        {
+            db.Entry(payment).State = EntityState.Modified;
+        }
+        public PlatForDNView PaymentCollection(List<PlatType> ClientList)
+        {
+            var platList = new PlatForDNView
+            {
+                Payments = new List<PaymentsRU>(),
+                SelectedSum = null,
+                SelectedCurrency = null
+            };
+            foreach (var item in ClientList)
+            {
+                var localInventionsList = new List<PaymentsRU>();
+                localInventionsList = db.PaymentsRU.Where(x => x.id_plat == item.Id).ToList();
+                platList.Payments.AddRange(localInventionsList);
+
+            }
+            platList.Payments = platList.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
+            platList.SelectedSum = platList.Payments.Sum(x => x.sum).ToString();
+            platList.SelectedCurrency = platList.Payments.Distinct().Select(x => x.Currencies.currencycode).FirstOrDefault();
+            return platList;
+        }
+        public void MarkAsPaid(List<PlatType>  platList,string fullPathFile)
+        {
+            DateTime thisDay = DateTime.Now;
+            foreach (var item in platList)
+            {
+                var PlatEdit = GetPaymentByID(item.Id);
+                PlatEdit.Paid = thisDay;
+                PlatEdit.File = fullPathFile;
+
+            }
+            Save();
+        }
+        public SelectList GetCountries(int? id = 94)
         {
             List<Countries> CountriesLst = db.Countries.Where(x =>
                x.id_country == 175
@@ -53,6 +106,7 @@ namespace PlatDiplom.Services
             || x.id_country == 178
             || x.id_country == 19
             || x.id_country == 65
+            || x.id_country == 94
             || x.id_country == 216).ToList();
             SelectList countries = new SelectList(CountriesLst, "id_country", "Country_Eng", id);
             return countries;
@@ -61,16 +115,17 @@ namespace PlatDiplom.Services
         {
             List<SelectListItem> StatusLst = new List<SelectListItem>
             {
-                new SelectListItem
-                {
-                    Text = "Paid",
-                    Value = "1"
-                },
-                new SelectListItem
+
+                 new SelectListItem
                 {
                     Selected = true,
                     Text = "NotPaid",
                     Value = "0"
+                },
+                new SelectListItem
+                {
+                    Text = "Paid",
+                    Value = "1"
                 },
                 new SelectListItem
                 {
@@ -89,6 +144,7 @@ namespace PlatDiplom.Services
             || x.id_currency == 2
             || x.id_currency ==3
             || x.id_currency == 4
+            || x.id_currency == 8
             || x.id_currency == 13
                   ).ToList();
             SelectList currencies = new SelectList(CurrensiesLst, "id_currency", "currencycode", id);
@@ -101,5 +157,11 @@ namespace PlatDiplom.Services
             return users;
 
         }
+        public void Save()
+        {
+            db.SaveChanges();
+        }
+
+     
     }
 }

@@ -16,108 +16,102 @@ namespace PlatDiplom.Controllers
     [Authorize]
     public class PaymentsController : Controller
     {
+
+        private IPlatManeger repository;
+        public PaymentsController()
+        {
+            this.repository = new PlatManager(new nemo_freshEntities());
+        }
+        public PaymentsController(IPlatManeger repository)
+        {
+            this.repository = repository;
+        }
         private nemo_freshEntities db = new nemo_freshEntities();
         public ActionResult Index(Filterplat filter, int page = 1)
         {
             int pageSize = 15;
-               
+
             Filterplat filterview = new Filterplat
             {
                 Country = filter.Country,
                 Status = filter.Status,
-                CountriesList = new PlatManager().GetCountries(filter.Country),
-                StatusList = new PlatManager().GetStatus(filter.Status),
-                sortOrder=filter.sortOrder
+                CountriesList = repository.GetCountries(filter.Country),
+                StatusList = repository.GetStatus(filter.Status),
+                sortOrder = filter.sortOrder
             };
 
-            IEnumerable<PaymentsData> res = new PlatManager().GetPaymentsList(filter).ToList();
+            IEnumerable<PaymentsData> res = repository.GetPaymentsList(filter).ToList();
 
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = res.Count() };
             res = res.Skip((page - 1) * pageSize).Take(pageSize);
 
-            PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo, FilterPlat= filterview };
+            PaymentsView ivm = new PaymentsView { PaymentsList = res, PageInfo = pageInfo, FilterPlat = filterview };
             return View(ivm);
 
         }
-
         [HttpPost]
-
         public ActionResult ShowPlat(List<PlatType> ClientList)
         {
-            var platList = new PlatForDNView
-            {
-                Payments = new List<PaymentsRU>(),
-                SelectedSum = null,
-                SelectedCurrency=null
-            };
-            foreach (var item in ClientList)
-            {
-                var localInventionsList = new List<PaymentsRU>();
-                localInventionsList = db.PaymentsRU.Where(x => x.id_plat == item.Id).ToList();
-                platList.Payments.AddRange(localInventionsList);
-
-            }
-            platList.Payments = platList.Payments.Distinct().OrderBy(x => x.id_plat).ToList();
-            platList.SelectedSum = platList.Payments.Sum(x => x.sum).ToString();
-            platList.SelectedCurrency = platList.Payments.Distinct().Select(x => x.Currencies.currencycode).FirstOrDefault();
-            return PartialView("/Views/Payments/Partial/ShowPlats.cshtml", platList);
+           var platList = repository.PaymentCollection(ClientList);
+           return PartialView("/Views/Payments/Partial/ShowPlats.cshtml", platList);
         }
         public ActionResult Create()
         {
-            ViewBag.region_id = new PlatManager().GetCountries();
-            ViewBag.currency_id = new PlatManager().GetCurrencies();
-            ViewBag.user_id = new PlatManager().GetUsers();
+            ViewBag.region_id = repository.GetCountries(175);
+            ViewBag.currency_id = repository.GetCurrencies(1);
+            ViewBag.user_id = repository.GetUsers(331);
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PaymentsRU paymentsRU)
+        public ActionResult Create(PaymentsRU payments)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.PaymentsRU.Add(paymentsRU);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    repository.Create(payments);
+                    repository.Save();
+                    return RedirectToAction("Index");
+                }
             }
+            catch (DataException)
+            {
+                ViewBag.region_id = repository.GetCountries(payments.region_id);
+                ViewBag.currency_id = repository.GetCurrencies(payments.currency_id);
+                ViewBag.user_id = repository.GetUsers(payments.User_id);
+                ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
 
-            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
-            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
-           // ViewBag.User_id = new SelectList(db.Users, "id_User", "Username", paymentsRU.User_id);
-            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
-            return View(paymentsRU);
+            }
+            return View(payments);
+
         }
-
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PaymentsRU paymentsRU = db.PaymentsRU.Find(id);
+
+            PaymentsRU paymentsRU = repository.GetPaymentByID(id);
             if (paymentsRU == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
-            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
-            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
+            ViewBag.region_id = repository.GetCountries(paymentsRU.region_id);
+            ViewBag.currency_id = repository.GetCurrencies(paymentsRU.currency_id);
+            ViewBag.user_id = repository.GetUsers(paymentsRU.User_id);
             return View(paymentsRU);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PaymentsRU paymentsRU)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(paymentsRU).State = EntityState.Modified;
-                db.SaveChanges();
+                repository.EditPayments(paymentsRU);
+                repository.Save();
                 return RedirectToAction("Index");
             }
-            ViewBag.region_id = new PlatManager().GetCountries(paymentsRU.region_id);
-            ViewBag.currency_id = new PlatManager().GetCurrencies(paymentsRU.currency_id);
-            ViewBag.user_id = new PlatManager().GetUsers(paymentsRU.User_id);
+            ViewBag.region_id = repository.GetCountries(paymentsRU.region_id);
+            ViewBag.currency_id = repository.GetCurrencies(paymentsRU.currency_id);
+            ViewBag.user_id = repository.GetUsers(paymentsRU.User_id);
             return View(paymentsRU);
         }
 

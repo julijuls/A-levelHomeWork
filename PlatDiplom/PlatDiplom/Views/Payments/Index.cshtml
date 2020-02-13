@@ -61,12 +61,14 @@
                             @Html.DisplayFor(modelItem => item.Paid)
                         </td>
                         <td>
-                            @*<input type="button"
-                                fileExtension="@item.File"
-                                filePath="@(item.File)"
-                                class="btn btn-info viewFile"
-                                value="@item.File" />*@
-                            @Html.DisplayFor(modelItem => item.File)
+                            @if (item.File != null) { 
+                            <button type='button' 
+                                    FilePath=" @item.File"
+                               
+                                    class="btn btn-default btn-sm btn-outline-secondary glyphicon glyphicon-file viewFile"
+                              ></button>
+                        
+                                }
                         </td>
 
                         <td>
@@ -100,16 +102,23 @@
         <script>
 
             $('.modal-dialog').draggable({ handle: ".modal-header" });
-
+            
+            $(`.viewFile`).click(function (e) {
+                var $this = $(this);
+                var LocalLink = $this.attr('filePath');
+                LocalLink = LocalLink.replace("C:", "http://127.0.0.1:8887");
+                LocalLink = LocalLink.replace("DNDocs", "");
+                LocalLink = LocalLink.replace("\\", "\/");
+                e.preventDefault(); 
+                window.location.href =LocalLink;
+            });
 
             $(`.ClientList`).change(function () {
                 var checkedElements = $('input.ClientList:checked');
                 if (checkedElements != null && checkedElements.length > 0) {
-                    // alert(`not empty`);
                     $(`.ClientSearch_ShowCases`).show('slow');
                 }
                 else {
-                    // alert(`empty`);
                     $(`.ClientSearch_ShowCases`).hide('slow');
                 }
             });
