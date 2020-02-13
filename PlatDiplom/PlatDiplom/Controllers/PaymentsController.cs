@@ -29,7 +29,7 @@ namespace PlatDiplom.Controllers
         private nemo_freshEntities db = new nemo_freshEntities();
         public ActionResult Index(Filterplat filter, int page = 1)
         {
-            int pageSize = 15;
+            int pageSize = 10;
 
             Filterplat filterview = new Filterplat
             {

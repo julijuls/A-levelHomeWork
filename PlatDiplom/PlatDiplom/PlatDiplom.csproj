@@ -201,6 +201,11 @@
     <Compile Include="Models\PlatModel\Document.cs" />
     <Compile Include="Models\PlatModel\Filterplat.cs" />
     <Compile Include="Models\PlatModel\JsonResponseModel.cs" />
+    <Compile Include="Models\PlatModel\Payments.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Payments.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PlatModel\PaymentsData.cs" />
     <Compile Include="Models\PlatModel\About_banks.cs">
       <DependentUpon>Payments.tt</DependentUpon>

@@ -101,15 +101,18 @@
 
             $('.modal-dialog').draggable({ handle: ".modal-header" });
             
-            //$(`.viewFile`).click(function (e) {
-            //    var $this = $(this);
-            //    var LocalLink = $this.attr('filePath');
-            //    LocalLink = LocalLink.replace("C:", "http://127.0.0.1:8887");
-            //    LocalLink = LocalLink.replace("DNDocs", "");
-            //    LocalLink = LocalLink.replace("\\", "\/");
-            //    e.preventDefault(); 
-            //    window.location.href =LocalLink;
-            //});
+            $(`.viewFile`).click(function (e) {
+                var $this = $(this);
+                var LocalLink = $this.attr('filePath');
+                LocalLink = LocalLink.replace("C:", "http://127.0.0.1:8887");
+                LocalLink = LocalLink.replace("DNDocs", "");
+                LocalLink = LocalLink.replace("\\", "\/");
+                e.preventDefault(); 
+                window.location.href =LocalLink;
+            });
+
+        
+            
 
             $(`.ClientList`).change(function () {
                 var checkedElements = $('input.ClientList:checked');

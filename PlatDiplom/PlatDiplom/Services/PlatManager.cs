@@ -23,7 +23,10 @@ namespace PlatDiplom.Services
         {
 
             List<PaymentsData> PaymentsList = new List<PaymentsData>();
-
+            if (filter.Country == null)
+            {
+                filter.Country = 175;
+            }
             PaymentsList = db.PaymentsRU.Where(x => x.region_id == filter.Country)
                                         .Select(x => new PaymentsData()
                                         {
@@ -48,7 +51,7 @@ namespace PlatDiplom.Services
             {
                 PaymentsList = PaymentsList.Where(x => x.Paid == null).ToList();
             }
-            return PaymentsList.ToList();
+            return PaymentsList.OrderByDescending(x=>x.id_plat).ToList();
 
         }
         public void Create(PaymentsRU payment)
